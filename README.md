@@ -1,4 +1,4 @@
-# OSMQ PROJECT**
+# **OSMQ PROJECT**
 
 &nbsp;
 
@@ -14,7 +14,7 @@
 
 ```
 
-git clone https://192.168.0.53/aelketroussi/rna.git
+git clone https://github.com/afitas/OSMQ.git
 cd OSMQ
 ```
 
