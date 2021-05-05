@@ -1,0 +1,62 @@
+{% set page_id = 4 %} {%extends "layout.html"%} {% block head %} {{ super() }} {% endblock %} {% block menu %}{% include "menus/menu.html" %}{% endblock %} {% block title %}{{ _("قائمة المقرارات") }}{% endblock %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ _("قائمة المقرارات") }} </title>
+</head>
+
+<body>
+    <div class="content">
+        <section class="row">
+            <div class="form-group has-search float-right">
+
+                <form mthod="GET">
+
+                    <input name="q" value="{{ q }}" type="text" class="form-control" placeholder="بحت">
+                </form>
+            </div>
+        </section>
+        <section class="row">
+            <ul class="list-group list-group-flush">
+                {% for row in rows %} {% if row.decision_type== "BATISATION"%}
+                <li class="list-group-item">
+                    <tr>
+                        <td>رقم المقرر:{{ row.numero }}</td>
+                        <td>اسم المقرر:{{row.valueInformation[0]['value']['name']}}</td>
+                        <td>نوع المقرر:{{_(row.decision_type) }}</td>
+                        <td>الولاية:{{_(row.commune.wilaya) }}</td>
+                        <td>
+                            <a href="{{ url_for('bp_decision.pv_detail', key= row.numero ) }}" class="btn-info">التفاصيل</a>
+
+
+                        </td>
+                    </tr>
+                </li>
+                {%else %}
+                <li class="list-group-item">
+                    <tr>
+                        <td>رقم المقرر:{{ row.numero }}</td>
+                        <td>اسم المقرر:{{row.decision_a_debatise.valueInformation[0]['value']['name']}}</td>
+                        <td>نوع المقرر:{{_(row.decision_type) }}</td>
+                        <td><button class="btn-info">التفاصيل
+                    
+                                </button> </td>
+                    </tr>
+                </li>
+
+                {% endif %} {% endfor %}
+
+            </ul>
+            <div class="d-flex justify-content-center">{{ pagination.links }}</div>
+        </section>
+    </div>
+</body>
+
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,6 @@
+[program:syncthing]
+autorestart = True
+directory = /home/adminrna/
+user = adminrna
+command = /usr/bin/syncthing -no-browser -home="/home/adminrna/.config/syncthing"
+environment = STNORESTART="1", HOME="/home/adminrna"

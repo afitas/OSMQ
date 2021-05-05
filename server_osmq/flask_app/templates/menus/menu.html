@@ -1,0 +1,19 @@
+{% if current_user.has_role(consts.ROLE_ADMIN) %}
+    {% include "menus/admin.html" %}
+{% endif %}
+
+{% if current_user.has_role(consts.ROLE_NATIONAL) %}
+    {% include "menus/national.html" %}
+{% endif %}
+
+{% if current_user.has_role(consts.ROLE_WILAYA) %}
+    {% include "menus/wilaya.html" %}
+{% endif %}
+
+{% if current_user.has_role(consts.ROLE_VALIDATEUR) %}
+    {% include "menus/validateur.html" %}
+{% endif %}
+
+{% if current_user.has_role(consts.ROLE_COMMUNE) %}
+    {% include "menus/commune.html" %}
+{% endif %}

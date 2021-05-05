@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<script>
+    //detect browser 
+    function browser() {
+        if (navigator.userAgent.toLowerCase().match('chrome')) {
+            let version = navigator.userAgent.toLowerCase().split('chrome/')[1];
+            version = version[0] + version[1]
+            if (version < 88) {
+                location.replace("{{ url_for('static', filename = 'pages/browser.html') }}")
+            }
+
+        } else if (navigator.userAgent.toLowerCase().match('firefox')) {
+            let version = navigator.userAgent.toLowerCase().split('firefox/')[1];
+            version = version[0] + version[1];
+            if (version < 84) {
+                location.replace("{{ url_for('static', filename = 'pages/browser.html') }}")
+            }
+
+
+        }
+
+    };
+    browser();
+</script>
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favrna.png') }}"/>
+    <link href="{{ url_for('static', filename='css/homepage.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/fa-all.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/layout.css') }}" rel="stylesheet" />
+
+    <link href="{{ url_for('static', filename='css/bootstrap-rtl.css') }}" rel="stylesheet" />
+   
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <title>الصفحة الرءسية </title>
+
+</head>
+
+<!--[if IE ]><body class=ie>
+  <center><p>Cette application ne supporte pas internet explorer </p></center><![endif]-->
+<!--[if  ! IE ]><body id=corf><![endif]-->
+
+<body>
+
+
+    
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<div class="wrapp">
+            <P> هي عبارة عن تطبيق ويب متخصص في متابعة عملية العنونة من حيث ادخال مراقبة ومتابعة وكذا استخراج احصائيات بلدية ولائية ووطنية حول تقدم هاته العملية.</p> 
+            <p> يهدف هذا التطبيق الى تسهيل ورقمنه عملية العنونة. </P>
+                <div class="price-table ">
+                    
+                        <span >معلومات الترخيص</span>
+                   
+                    <ul>
+                        <li>رقم إصدار التطبيق : 1.0</li>
+                        <li>رقم المقرر : 7531شس</li>
+                       
+                    </ul>
+                </div>
+			<div class="img_logo_big">
+
+            </div>
+		</div>
+	</div>
+	<div class="form-container sign-in-container ">
+     
+		<form class="needs-validation" method="POST" autocomplete="off" novalidate>
+            {{ login_user_form.hidden_tag() }}
+			
+			<div class="img_logo">
+			</div>
+
+			<h4>تسجيل الدخول</h4>
+
+            <div class="form-group">
+                <i class="fas fa-user" ></i>
+                {% if login_user_form.email.errors %}
+                <input aria-describedby="usernameHelp" class="myInput form-control  is-invalid" id="username" name="email" required="" type="text" value="" placeholder="إسم المستخدم">
+                {% else %}
+                <input aria-describedby="usernameHelp" class="myInput form-control "  id="username" name="email" required="" type="text" value="" placeholder="إسم المستخدم">
+                {% endif %}
+                <div class="invalid-feedback">
+                {{ login_user_form.email.errors | first }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                {% if login_user_form.password.errors %}
+                <input class=" myInput is-invalid form-control" id="password" name="password" required="" type="password" value="" placeholder="كلمة السر">
+                {% else %}
+                <input class=" myInput form-control" id="password" name="password" required="" type="password" value="" placeholder="كلمة السر">
+                {% endif %}
+                <div class="invalid-feedback">
+                    {{ login_user_form.password.errors | first }}
+                </div>
+            </div>
+		
+			<input class="butt" id="submit" name="submit" type="submit" value="تسجيل الدخول" >
+           
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>العودة إلى تسجيل الدخول</h1>
+				<p>يم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوع</p>
+				<button class="ghost" id="signIn" style="border-radius: 20px; outline: none;">تسجيل الدخول</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h2 id="titre">مرحب بكم في منصة</h2>
+			    <div class="social-container">
+				    <h1 id="titre">المرجع الوطني للعنونة</h1>
+			    </div>
+				<p>وريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه
+                    ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت ...</p>
+				<button class="ghost" id="signUp" style="border-radius: 20px; outline: none;">معرفة المزيد</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/homepage.js') }}"></script>
+</body>
+
+<footer class="d-inline-flex">
+    <p id="fontar">- تم تطويره من طرف -</p>
+    <a target="_blank" href="https://asal.dz/?p=1301"> مركز التقنيات الفضائية، الوكالة الفضائية الجزائرة</a>
+    <p id="fonten">- Powered by -</p>
+</footer>
+
+
+
+<script>
+    new WOW().init();
+</script>
+
+</html>

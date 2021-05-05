@@ -1,0 +1,447 @@
+{% set page_id = 8 %} {%extends "layout.html"%} {% block head %} {{ super() }} {% endblock %} {% block menu %}{% include
+"menus/menu.html" %}{% endblock %} {% block title %}{{ _("الإحصائيات") }}{% endblock %} {% block content %}
+<div class="container">
+    <div class="table-responsive-sm">
+        <form class="needs-validation" method="POST" autocomplete="off" novalidate>
+            {{ form.csrf_token }}
+            <table class="table-responsive-sm table-hover">
+                <thead>
+
+                    <center>
+                        <h2 class="phase"><strong>عملية تسمية الفضاءات العمومية و الاهلة بالسكان</strong></h5>
+                    </center>
+                </thead>
+                <tbody style="font-family: regular;">
+
+                    <tr style="width: 100%">
+                        <td style="width: 55%"></td>
+
+                        <td style="width: 15%">
+                            الإحصائيات السابقة
+                        </td>
+                        <td style="width: 25%">
+                            إدخال الإحصائيات الجديدة
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="nbEspPubRec">إجمالي عدد الفضاءات العمومية و الأهلة بالسكان المحصاة</label></td>
+                        <td name="old_data">{{ old_data['nbEspPubRec'] if old_data['nbEspPubRec'] is defined else 'لا
+                            يوجد' }}</td>
+                        <td name="src" id="nbEspPubRec" class="my-inputs">
+                            {{ form.nbEspPubRec(class="form-control" + (" is-invalid" if form.nbEspPubRec.errors else
+                            "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbEspPubBapt">إجمالي عدد الفضاءات العمومية و الأهلة بالسكان المسماة قبل إنطلاق
+                                العملية سنة
+                                2014</label></td>
+                        <td name="old_data">{{ old_data['nbEspPubBapt'] if old_data['nbEspPubBapt'] is defined else 'لا
+                            يوجد' }}
+                        </td>
+                        <td name="src" id="nbEspPubBapt" class="my-inputs">
+                            {{ form.nbEspPubBapt(class="form-control" + (" is-invalid" if form.nbEspPubBapt.errors else
+                            "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td><label for="nbEspPubNonBapt" >عدد الفضاءات العمومية و الأهلة بالسكان غير المسماة و المنتظر
+                                تسميتها</label></td>
+                        <td name="old_data">{{ old_data['nbEspPubNonBapt'] if old_data['nbEspPubNonBapt'] is defined
+                            else 'لا يوجد' }}
+                        </td>
+                        <td class="my-inputs" id="nbEspPubNonBapt" style="display: none;">
+                            {{ form.nbEspPubNonBapt(class="form-control" + (" is-invalid" if form.nbEspPubNonBapt.errors
+                            else "")) }}
+                        </td>
+                        <td>
+                            <span id="nbEspPubNonBapt_display"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbBapProp">عدد إقتراحات التسمية المنتظر معالجتها من طرف اللجنة الولائية للتسمية</label></td>
+                        <td name="old_data">{{ old_data['nbBapProp'] if old_data['nbBapProp'] is defined else 'لا يوجد'
+                            }}</td>
+                        <td name="src" id="nbBapProp" class="my-inputs">
+                            {{ form.nbBapProp(class="form-control" + (" is-invalid" if form.nbBapProp.errors else ""))
+                            }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="divider">
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td style="">
+                            <h4 class="phase_second"><strong>إقتراحات التسمية المصادق عليها</strong></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbRueBoulVois">الشوارع/ الطرق/ النهوج/ المسالك/ ... الخ</label></td>
+                        <td name="old_data">{{ old_data['nbRueBoulVois'] if old_data['nbRueBoulVois'] is defined else
+                            'لا يوجد' }}
+                        </td>
+                        <td name="src" id="nbRueBoulVois" class="my-inputs">
+                            {{ form.nbRueBoulVois(class="form-control" + (" is-invalid" if form.nbRueBoulVois.errors
+                            else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbCiteAglo">الأحياء، التجمعات السكانية و التجزئات</label></td>
+                        <td name="old_data">{{ old_data['nbCiteAglo'] if old_data['nbCiteAglo'] is defined else 'لا
+                            يوجد' }}</td>
+                        <td name="src" id="nbCiteAglo" class="my-inputs">
+                            {{ form.nbCiteAglo(class="form-control" + (" is-invalid" if form.nbCiteAglo.errors else ""))
+                            }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbJardPlace">الحدائق، الساحات، الحظائر و الغابات</label></td>
+                        <td name="old_data">{{ old_data['nbJardPlace'] if old_data['nbJardPlace'] is defined else 'لا
+                            يوجد' }}</td>
+                        <td name="src" id="nbJardPlace" class="my-inputs">
+                            {{ form.nbJardPlace(class="form-control" + (" is-invalid" if form.nbJardPlace.errors else
+                            "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbMonumHist">المعالم التدكارية و الآثار التارخية</label></td>
+                        <td name="old_data">{{ old_data['nbMonumHist'] if old_data['nbMonumHist'] is defined else 'لا
+                            يوجد' }}</td>
+                        <td name="src" id="nbMonumHist" class="my-inputs">
+                            {{ form.nbMonumHist(class="form-control" + (" is-invalid" if form.nbMonumHist.errors else
+                            "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbInstImmo">المؤسسات، المباني، الأملاك، العقارات، و التجهيزات العمومية</label>
+                        </td>
+                        <td name="old_data">{{ old_data['nbInstImmo'] if old_data['nbInstImmo'] is defined else 'لا
+                            يوجد' }}</td>
+                        <td name="src" id="nbInstImmo" class="my-inputs">
+                            {{ form.nbInstImmo(class="form-control" + (" is-invalid" if form.nbInstImmo.errors else ""))
+                            }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbAutre">تسميات أخرى</label></td>
+                        <td name="old_data">{{ old_data['nbAutre'] if old_data['nbAutre'] is defined else 'لا يوجد' }}
+                        </td>
+                        <td name="src" id="nbAutre" class="my-inputs">
+                            {{ form.nbAutre(class="form-control" + (" is-invalid" if form.nbAutre.errors else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>مجموع عدد التسميات المصادق عليها</td>
+                        <td name='dyn_calc'>
+                            {{ (old_data.nbRueBoulVois + old_data.nbCiteAglo + old_data.nbJardPlace +
+                            old_data.nbMonumHist + old_data.nbInstImmo + old_data.nbAutre) if old_data is not none else
+                            0 }}
+                        </td>
+                        <td id="sum_BapValide"></td>
+                    </tr>
+                    <tr>
+                        <td>النسبة المئوية</td>
+                        <td>                            
+                            {{ "%% %.0f"|format((((old_data.nbRueBoulVois + old_data.nbCiteAglo + old_data.nbJardPlace + old_data.nbMonumHist + old_data.nbInstImmo + old_data.nbAutre) / (old_data.nbBapProp + old_data.nbEspPubNonBapt + old_data.nbRueBoulVois + old_data.nbCiteAglo + old_data.nbJardPlace + old_data.nbMonumHist + old_data.nbInstImmo + old_data.nbAutre)) * 100)
+                            if old_data.nbBapProp != 0 and old_data is not none else 0) }}
+                        </td>
+                        <td id="perc_BapValide"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="divider">
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>إجمالي عدد الفضاءات المسماة قبل إنطلاق العملية 2014 و كدا عدد التسميات المصادق عليها بعد
+                            العملية 2014
+                        </td>
+                        <td>
+                            {{ (old_data.nbEspPubBapt + old_data.nbRueBoulVois + old_data.nbCiteAglo +
+                            old_data.nbJardPlace + old_data.nbMonumHist + old_data.nbInstImmo + old_data.nbAutre) if
+                            old_data is not none else 0 }}
+                        </td>
+                        <td id="sum_bat_before_after"></td>
+                    </tr>
+                    <tr>
+                        <td>النسبة المئوية</td>
+                        <td>
+                            {{ "%% %.0f"|format(((old_data.nbRueBoulVois + old_data.nbCiteAglo + old_data.nbJardPlace +
+                            old_data.nbMonumHist + old_data.nbInstImmo + old_data.nbAutre + old_data.nbEspPubBapt) /
+                            old_data.nbEspPubRec * 100) if old_data.nbEspPubRec != 0 and old_data
+                            is not none else 0 ) }}
+                        </td>
+                        <td id="perc_bat"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="divider">
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr class="" style="width: 100%;text-align: center;">
+                        <td colspan="10">
+                            <h2 class="phase"><strong> عملية الترقيم و تركيب اللوحات</strong></h2>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td>
+                            <h4 class="phase_second"><strong>تركيب لوحات التسمية</strong></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbPlaqNomPrevParComm">عدد لوحات التسمية الأولية</label>
+                        </td>
+                        <td name="old_data">{{ old_data['nbPlaqNomPrevParComm'] if old_data['nbPlaqNomPrevParComm'] is
+                            defined else 'لا يوجد' }}</td>
+                        <td name="src" id="nbPlaqNomPrevParComm" class="my-inputs">
+                            {{ form.nbPlaqNomPrevParComm(class="form-control" + (" is-invalid" if
+                            form.nbPlaqNomPrevParComm.errors else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbPlaqNomNonInst">عدد لوحات التسمية غير المركبة</label></td>
+                        <td name="old_data">{{ old_data['nbPlaqNomNonInst'] if old_data['nbPlaqNomNonInst'] is defined
+                            else 'لا يوجد' }}</td>
+                        <td class="my-inputs" id="nbPlaqNomNonInst">
+                            {{ form.nbPlaqNomNonInst(class="form-control" + (" is-invalid" if
+                            form.nbPlaqNomNonInst.errors else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbPlaqNomInst">عدد لوحات التسمية المركبة</label></td>
+                        <td name="old_data">{{ old_data['nbPlaqNomInst'] if old_data['nbPlaqNomInst'] is defined else
+                            'لا يوجد' }}
+                        </td>
+                        <td name="src" id="nbPlaqNomInst" class="my-inputs">
+                            {{ form.nbPlaqNomInst(class="form-control" + (" is-invalid" if form.nbPlaqNomInst.errors
+                            else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>النسبة المئوية</td>
+                        <td>
+                            {{ "%% %.0f"|format(((old_data.nbPlaqNomInst / (old_data.nbPlaqNomPrevParComm + old_data.nbPlaqNomNonInst + old_data.nbPlaqNomInst)) * 100) if
+                            old_data.nbPlaqNomPrevParComm != 0 and old_data is not none else 0) }}
+                        </td>
+                        <td id="perc_PlaqNomInst"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="entrPlaqNomFab">المؤسسات المكلفة بصناعة لوحات التسمية</label></td>
+                        <td name="old_data" value="{{old_data['entrPlaqNomFab']}}">
+                            {{ _(old_data['entrPlaqNomFab']) if old_data['entrPlaqNomFab'] is defined else '' }}
+                        </td>
+                        <td class="my-inputs">
+                            {{ form.entrPlaqNomFab(class="form-control" + (" is-invalid" if form.entrPlaqNomFab.errors
+                            else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="entrPlaqNomInst">المؤسسات المكلفة بتركيب لوحات التسمية</label></td>
+                        <td name="old_data" value="{{old_data['entrPlaqNomInst']}}">
+                            {{ _(old_data['entrPlaqNomInst']) if old_data['entrPlaqNomInst'] is defined else ''}}
+                        </td>
+                        <td class="my-inputs">
+                            {{ form.entrPlaqNomInst(class="form-control" + (" is-invalid" if form.entrPlaqNomInst.errors
+                            else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="divider">
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td>
+                            <h4 class="phase_second"><strong>عملية الترقيم</strong></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbPlaqNumPrevParComm">عدد المداخل المرقمة أوليا</label>
+                        </td>
+                        <td name="old_data">{{ old_data['nbPlaqNumPrevParComm'] if old_data['nbPlaqNumPrevParComm'] is
+                            defined else 'لا يوجد' }}</td>
+                        <td name="src" id="nbPlaqNumPrevParComm" class="my-inputs">
+                            {{ form.nbPlaqNumPrevParComm(class="form-control" + (" is-invalid" if
+                            form.nbPlaqNumPrevParComm.errors else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbPlaqNumNonInst">عدد لوحات الترقيم غير المركبة</label></td>
+                        <td name="old_data">{{ old_data['nbPlaqNumNonInst'] if old_data['nbPlaqNumNonInst'] is defined
+                            else 'لا يوجد' }}</td>
+                        <td class="my-inputs" id="nbPlaqNumNonInst">
+                            {{ form.nbPlaqNumNonInst(class="form-control" + (" is-invalid" if
+                            form.nbPlaqNumNonInst.errors else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="nbPlaqNumInst">عدد لوحات الترقيم المركبة</label></td>
+                        <td name="old_data">{{ old_data['nbPlaqNumInst'] if old_data['nbPlaqNumInst'] is defined else
+                            'لا يوجد' }}
+                        </td>
+                        <td name="src" id="nbPlaqNumInst" class="my-inputs">
+                            {{ form.nbPlaqNumInst(class="form-control" + (" is-invalid" if form.nbPlaqNumInst.errors
+                            else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>النسبة المئوية</td>
+                        <td>
+                            {{ "%% %.0f"|format(((old_data.nbPlaqNumInst / (old_data.nbPlaqNumPrevParComm + old_data.nbPlaqNumInst + old_data.nbPlaqNumNonInst)) * 100) if
+                            old_data.nbPlaqNumPrevParComm != 0 and old_data is not none else 0) }}
+                        </td>
+                        <td id="perc_PlaqNumInst"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="entrPlaqNumFab">المؤسسات المكلفة بصناعة لوحات الترقيم</label></td>
+                        <td name="old_data" value="{{old_data['entrPlaqNumFab']}}">
+                            {{ _(old_data['entrPlaqNumFab']) if old_data['entrPlaqNumFab'] is defined else ''}}
+                        </td>
+                        <td class="my-inputs">
+                            {{ form.entrPlaqNumFab(class="form-control" + (" is-invalid" if form.entrPlaqNumFab.errors
+                            else "")) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="entrPlaqNumInst">المؤسسات المكلفة بتركيب لوحات الترقيم</label></td>
+                        <td name="old_data" value="{{old_data['entrPlaqNumInst']}}">
+                            {{ _(old_data['entrPlaqNumInst']) if old_data['entrPlaqNumInst'] is defined else ''}}
+                        </td>
+                        <td class="my-inputs">
+                            {{ form.entrPlaqNumInst(class="form-control" + (" is-invalid" if form.entrPlaqNumInst.errors
+                            else "")) }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input class="btn btn-primary btn-lg" id="submit" name="submit" type="submit" value="إضافة" style="margin-bottom:20px;    margin-top: 20px;
+            width: 20%;">
+        </form>
+    </div>
+    <style>
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+    <script>
+        var perc_valid = true;
+        $(document).ready(function () {
+            $("[name='src']").on("change", function () {
+                var nbRueBoulVois = (($("[id='nbRueBoulVois']").find('input')[0].value == "") ? Number($("[id='nbRueBoulVois']").prev()[0].innerText) : $("[id='nbRueBoulVois']").find('input')[0].valueAsNumber) || 0;
+                var nbCiteAglo = (($("[id='nbCiteAglo']").find('input')[0].value == "") ? Number($("[id='nbCiteAglo']").prev()[0].innerText) : $("[id='nbCiteAglo']").find('input')[0].valueAsNumber) || 0;
+                var nbJardPlace = (($("[id='nbJardPlace']").find('input')[0].value == "") ? Number($("[id='nbJardPlace']").prev()[0].innerText) : $("[id='nbJardPlace']").find('input')[0].valueAsNumber) || 0;
+                var nbMonumHist = (($("[id='nbMonumHist']").find('input')[0].value == "") ? Number($("[id='nbMonumHist']").prev()[0].innerText) : $("[id='nbMonumHist']").find('input')[0].valueAsNumber) || 0;
+                var nbBapProp = (($("[id='nbBapProp']").find('input')[0].value == "") ? Number($("[id='nbBapProp']").prev()[0].innerText) : $("[id='nbBapProp']").find('input')[0].valueAsNumber) || 0;
+                var nbInstImmo = (($("[id='nbInstImmo']").find('input')[0].value == "") ? Number($("[id='nbInstImmo']").prev()[0].innerText) : $("[id='nbInstImmo']").find('input')[0].valueAsNumber) || 0;
+                var nbAutre = (($("[id='nbAutre']").find('input')[0].value == "") ? Number($("[id='nbAutre']").prev()[0].innerText) : $("[id='nbAutre']").find('input')[0].valueAsNumber) || 0;
+                var nbEspPubRec = (($("[id='nbEspPubRec']").find('input')[0].value == "") ? Number($("[id='nbEspPubRec']").prev()[0].innerText) : $("[id='nbEspPubRec']").find('input')[0].valueAsNumber) || 0;
+                var nbEspPubBapt = (($("[id='nbEspPubBapt']").find('input')[0].value == "") ? Number($("[id='nbEspPubBapt']").prev()[0].innerText) : $("[id='nbEspPubBapt']").find('input')[0].valueAsNumber) || 0;
+                var nbBapProp = (($("[id='nbBapProp']").find('input')[0].value == "") ? Number($("[id='nbBapProp']").prev()[0].innerText) : $("[id='nbBapProp']").find('input')[0].valueAsNumber) || 0;
+                var nbPlaqNomInst = (($("[id='nbPlaqNomInst']").find('input')[0].value == "") ? Number($("[id='nbPlaqNomInst']").prev()[0].innerText) : $("[id='nbPlaqNomInst']").find('input')[0].valueAsNumber) || 0;
+                var nbPlaqNomNonInst = (($("[id='nbPlaqNomNonInst']").find('input')[0].value == "") ? Number($("[id='nbPlaqNomNonInst']").prev()[0].innerText) : $("[id='nbPlaqNomNonInst']").find('input')[0].valueAsNumber) || 0;
+                var nbPlaqNomPrevParComm = (($("[id='nbPlaqNomPrevParComm']").find('input')[0].value == "") ? Number($("[id='nbPlaqNomPrevParComm']").prev()[0].innerText) : $("[id='nbPlaqNomPrevParComm']").find('input')[0].valueAsNumber) || 0;
+                var nbPlaqNumInst = (($("[id='nbPlaqNumInst']").find('input')[0].value == "") ? Number($("[id='nbPlaqNumInst']").prev()[0].innerText) : $("[id='nbPlaqNumInst']").find('input')[0].valueAsNumber) || 0;
+                var nbPlaqNumNonInst = (($("[id='nbPlaqNumNonInst']").find('input')[0].value == "") ? Number($("[id='nbPlaqNumNonInst']").prev()[0].innerText) : $("[id='nbPlaqNumNonInst']").find('input')[0].valueAsNumber) || 0;
+                var nbPlaqNumPrevParComm = (($("[id='nbPlaqNumPrevParComm']").find('input')[0].value == "") ? Number($("[id='nbPlaqNumPrevParComm']").prev()[0].innerText) : $("[id='nbPlaqNumPrevParComm']").find('input')[0].valueAsNumber) || 0;
+                
+                var sum_BapValide = nbRueBoulVois + nbCiteAglo + nbJardPlace + nbMonumHist + nbInstImmo + nbAutre
+                var nbEspPubNonBapt = nbEspPubRec - (sum_BapValide + nbEspPubBapt + nbBapProp);
+
+                if (nbEspPubNonBapt >= 0) {
+                    $("[id='nbEspPubNonBapt']").find('input')[0].value = nbEspPubNonBapt
+                    $("#nbEspPubNonBapt_display").html(nbEspPubNonBapt)
+                }
+
+                $("#sum_BapValide").text(sum_BapValide)
+                var perc_BapValide = Math.round(((nbRueBoulVois + nbCiteAglo + nbJardPlace + nbMonumHist + nbInstImmo + nbAutre) / (nbBapProp + nbEspPubNonBapt + nbRueBoulVois + nbCiteAglo + nbJardPlace + nbMonumHist + nbInstImmo + nbAutre)) * 100) || 0;
+                
+                $("#perc_BapValide").text("% " + perc_BapValide)
+                if (perc_BapValide > 100) {
+                    $("#perc_BapValide").css("background-color", "#DC354550");
+                    $("#perc_BapValide").addClass('blink');
+                } else {
+                    $("#perc_BapValide").css("background-color", "#FFFFFF");
+                    $("#perc_BapValide").removeClass('blink');
+                }
+
+                $("#sum_bat_before_after").text(nbEspPubBapt + nbRueBoulVois + nbCiteAglo + nbJardPlace + nbMonumHist + nbInstImmo + nbAutre)
+
+                var perc_bat = Math.round((nbRueBoulVois + nbCiteAglo + nbJardPlace + nbMonumHist + nbInstImmo + nbAutre + nbEspPubBapt) / nbEspPubRec * 100) || 0;
+                $("#perc_bat").text("% " + perc_bat)
+                if (perc_bat > 100) {
+                    $("#perc_bat").css("background-color", "#DC354550");
+                    $("#perc_bat").addClass('blink');
+                } else {
+                    $("#perc_bat").css("background-color", "#FFFFFF");
+                    $("#perc_bat").removeClass('blink');
+                }
+                var perc_PlaqNomInst = Math.round(nbPlaqNomInst / (nbPlaqNomPrevParComm + nbPlaqNomNonInst + nbPlaqNomInst) * 100) || 0;
+                $("#perc_PlaqNomInst").text("% " + perc_PlaqNomInst)
+                if (perc_PlaqNomInst > 100) {
+                    $("#perc_PlaqNomInst").css("background-color", "#DC354550");
+                    $("#perc_PlaqNomInst").addClass('blink');
+                } else {
+                    $("#perc_PlaqNomInst").css("background-color", "#FFFFFF");
+                    $("#perc_PlaqNomInst").removeClass('blink');
+                }
+
+                var perc_PlaqNumInst = Math.round(nbPlaqNumInst / (nbPlaqNumPrevParComm + nbPlaqNumNonInst + nbPlaqNumInst) * 100) || 0;
+                $("#perc_PlaqNumInst").text("% " + perc_PlaqNumInst)
+                if (perc_PlaqNumInst > 100) {
+                    $("#perc_PlaqNumInst").css("background-color", "#DC354550");
+                    $("#perc_PlaqNumInst").addClass('blink');
+                } else {
+                    $("#perc_PlaqNumInst").css("background-color", "#FFFFFF");
+                    $("#perc_PlaqNumInst").removeClass('blink');
+                }
+                if (perc_BapValide > 100 || perc_bat > 100 || perc_PlaqNomInst > 100 || perc_PlaqNumInst > 100) {
+                    perc_valid = false;
+                } else {
+                    perc_valid = true;
+                }
+            });
+
+        });
+        $('form').submit(function (e) {
+            if (!perc_valid) {
+                alert("النسبة المئوية غير صحيحة");
+                return false;
+            }
+            var all_empty = true;
+            $('td[class="my-inputs"]').each(function () {
+                if ($(this).find('input').length) {
+                    if (!$(this).find('input')[0].value) {
+                        $(this).find('input')[0].value = $(this).prev()[0].innerText
+                    } else if ($(this).find('input')[0].value < 0) {
+                        e.preventDefault();
+                        alert("لا يمكن أن تكون الأرقام سلبية");
+                    } else {
+                        all_empty = false;
+                    }
+                } else {
+                    if ($(this).find('select')[0].value == "") {
+                        $(this).find('select')[0].value = $(this).prev().attr("value");
+                    } else {
+                        all_empty = false;
+                    }
+                }
+            });
+            if (all_empty) {
+                e.preventDefault();
+                $(this)[0].reset();
+                alert("لا يمكن أن تكون جميع الحقول فارغة");
+            }
+        });
+    </script>
+    {% endblock %}

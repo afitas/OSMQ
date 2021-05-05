@@ -1,0 +1,30 @@
+{% set page_id = 4 %} {%extends "layout.html"%} {% block head %} {{ super() }} {% endblock %} {% block menu %}{% include "menus/menu.html" %}{% endblock %} {% block title %}{{ _("قائمة المقرارات") }}{% endblock %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Decison Detail</title>
+</head>
+
+<body>
+    {% for row in rows %}
+    <li class="list-group-item">
+        <tr>
+            <td>رقم المقرر:{{ row.numero }}</td>
+            <td>اسم المقرر:{{row.valueInformation[0]['value']['name']}}</td>
+            <td>نوع المقرر:{{_(row.decision_type) }}</td>
+            <td>الولاية:{{_(row.commune.wilaya) }}</td>
+
+        </tr>
+    </li>
+    {% endfor %}
+
+</body>
+
+</html>
+
+{% endblock %}

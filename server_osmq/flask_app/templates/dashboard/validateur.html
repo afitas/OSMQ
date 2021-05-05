@@ -1,0 +1,6 @@
+{% set page_id = 1 %}
+{%extends "layout.html"%} 
+{% block head %} {{ super() }}  {% endblock %} 
+{% block menu %}{% include "menus/menu.html" %}{% endblock %}
+{% block title %}{{ _("لوحة القيادة") }}{% endblock %}
+{% block content %}<p>Here we put our dashboard VALIDATEUR content</p>{% endblock %}

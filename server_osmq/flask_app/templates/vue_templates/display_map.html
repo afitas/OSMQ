@@ -1,0 +1,16 @@
+{% extends "map_layout.html" %}
+
+{% block head %}
+{{ super() }}
+  <% htmlWebpackPlugin.files.css.forEach((fileName) => { %>
+    <link rel="stylesheet" href="<%= fileName %>}}">
+  <% }) %>
+{% endblock %}}
+{% block content %}
+<div id= "display_app">
+
+</div>
+<% htmlWebpackPlugin.files.js.forEach((fileName) => { %>
+  <script src="<%= fileName %>"></script>
+<% }) %>
+{% endblock %}

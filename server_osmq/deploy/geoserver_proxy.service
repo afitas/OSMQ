@@ -1,0 +1,13 @@
+[Unit]
+Description=RNA service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+User=gitlab-runner
+ExecStart=/home/adminrna/rna/server_rna/deploy/start_proxy.bash
+
+[Install]
+WantedBy=multi-user.target

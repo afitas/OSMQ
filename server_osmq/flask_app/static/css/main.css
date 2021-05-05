@@ -1,0 +1,223 @@
+.form-control.is-invalid {
+    background-image: none;
+}
+
+@font-face {
+    font-family: 'MyWebFont';
+    src: url('/static/fonts/Amiri-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'regular';
+    src: url('/static/fonts/Amiri-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'MyWebFont', Fallback, sans-serif ! important;
+    font-size: 17px !important;
+}
+
+body.ie {
+    background-color: black;
+    pointer-events: none;
+}
+
+body.ie p {
+    font-size: 50px;
+    color: white;
+}
+
+body.ie .container {
+    display: none;
+}
+
+.main {
+    margin: 50px auto;
+    overflow: auto;
+    text-align: center;
+}
+
+.top {
+    width: 40%;
+    margin: 60px auto;
+}
+
+.top p {
+    font-size: 15px;
+}
+
+.chrome,
+.firefox {
+    width: 50%;
+    float: left;
+    padding: 25px;
+}
+
+h3 span {
+    font-size: 15px;
+}
+
+button a {
+    color: black;
+    pointer-events: none;
+}
+
+.right>img,
+.left>img {
+    width: 150px;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.left h3 {
+    font-family: 'regular';
+}
+
+.left h3 span {
+    font-size: 40px;
+    font-family: 'MyWebFont';
+}
+
+.box_login {
+    margin: 100px auto;
+    padding: 20px;
+    float: left;
+    width: 40%;
+    color: #545b62;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+.back {
+    background-image: url('/static/img/map_login.jpg');
+    width: 60%;
+    height: 100vh;
+    float: left;
+    background-size: cover;
+}
+
+.login {
+    overflow: auto;
+    background-color: #c3e9f6;
+}
+
+.text_login h1 {
+    font-size: 5vw;
+    padding: 15px;
+}
+
+.text_login {
+    margin: 100px auto 0 auto;
+    width: 100%;
+}
+
+li.nav-item>a {
+    font-size: 20px;
+}
+
+.sidebar-sticky {
+    padding-top: 0!important;
+}
+
+.card {
+    position: unset !important;
+}
+
+.card-body-style {
+    padding: 3rem 1.25rem 1.25rem! important;
+    font-family: 'regular';
+    font-size: 20px;
+}
+
+.table-active.regular>tr {
+    font-family: 'regular';
+    font-size: 20px;
+}
+
+#collapseExample>div>div>div>p>b {
+    font-size: 25px;
+}
+
+#collapseExample2>div>div>div>p>b {
+    font-size: 25px;
+}
+
+.underline {
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+
+
+/* th {
+    min-width: 70px !important;
+} */
+
+tr.big>th {
+    min-width: 110px !important;
+}
+
+.fas.fa-sort.text-dark {
+    margin: 0 3px;
+}
+
+.btnLg {
+    font-size: 20px;
+}
+
+.dropWhite {
+    color: black;
+    background-color: white;
+    border-color: white;
+    font-size: 20px;
+}
+
+.list_wilaya {
+    position: fixed;
+    top: 0px;
+    left: 10%;
+    z-index: 9999;
+}
+
+.label_wilaya {
+    position: fixed;
+    top: 7px;
+    left: 20%;
+    z-index: 9999;
+    color: white;
+}
+
+.dropBlack {
+    color: #fff;
+    background-color: #000000;
+    border-color: #343a40;
+}
+
+.dropBlack:hover {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.phase {
+    margin-bottom: 40px;
+    TEXT-DECORATION: underline;
+    text-decoration-style: double;
+    text-underline-offset: 10px;
+    text-align: center;
+}
+
+.phase_second {
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    padding-bottom: 20px;
+}
+
+table>thead>.big_national>th {
+    padding: .75rem 26px !important;
+}

@@ -1,4 +1,4 @@
-# **RNA PROJECT**
+# **OSMQ PROJECT**
 
 &nbsp;
 
@@ -13,11 +13,8 @@
 #### **1- Clone git repo :**
 
 ```
-git config --global user.name "YOUR_NAME"           eg : aelketroussi
-git config --global user.email "CTS_EMAIL_ADRESS"   eg : aelketroussi@cts.asal.dz
-git config --global http.sslVerify false
-git clone https://192.168.0.53/aelketroussi/rna.git
-cd rna
+git clone https://github.com/afitas/OSMQ.git
+cd OSMQ
 ```
 
 &nbsp;
@@ -31,7 +28,7 @@ Eventually you can override the config.py file configuration by creating a new f
 #### **3- Install dependencies :**
 
 ```
-cd rna\server_rna
+cd OSMQ\server_osmq
 python -m venv .venv # only for the first time
 .venv\Scripts\activate
 pip install -r requirements.txt
@@ -42,7 +39,7 @@ pip install -r requirements.txt
 #### **4- Run flask server :**
 
 ```
-cd rna\server_rna
+cd OSMQ\server_osmq
 flask db upgrade   # only for the first time or after a git pull
 load_data.bat # if you want to load initial data like codelist see "sql/" directory, WARNING this command is only used with postgresql db(you must include the link of the folder bin that it is located in postgre inside the environement variable PATH)
 start.bat
@@ -53,7 +50,7 @@ start.bat
 #### **5- Run vuejs server :**
 
 ```
-cd rna\vue_apps
+cd OSMQ\vue_apps
 npm install
 npm run watch # See package.json and vue.config.js to understand where the vue html template is generated
 ```
@@ -66,9 +63,7 @@ If you need to add initial data (database) then create your model and export you
   
 Create postgresql extentions:
 ```
-create extension pg_trgm;
 create extension postgis;
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 ```
 &nbsp;
 

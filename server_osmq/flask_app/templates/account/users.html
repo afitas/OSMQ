@@ -1,0 +1,192 @@
+ {% set page_id = 2 %} {%extends "layout.html"%} {% block head %} {{ super() }} {% endblock %} {% block menu %}{% include "menus/menu.html" %}{% endblock %} {% block title %}{{ _("قائمة المستخدمين") }}{% endblock %} {% block title_left %}
+<a href="{{ url_for('bp_account.add_user') }}" class="btn btn-sm btn-success btnLg"> اضافة مستخدم جديد</a> {% endblock %} {% block content %}
+
+
+<div>
+
+    <div id="content">
+        <div>
+            <div class="form-group has-search float-right">
+
+                <form mthod="GET">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input name="q" value="{{ q }}" type="text" class="form-control" placeholder="بحت" />
+                </form>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr class="head">
+              <th>
+                اسم المستخدم
+                <a
+                  href="{{ url_for('bp_account.users', q=q, sort='user_username', dir='desc' if sort=='user_username' and dir!='desc' else 'asc' )}}"
+                >
+                  <i
+                    class="fas fa-sort {{ 'text-primary' if sort=='user_username' else 'text-dark' }}"
+                  ></i
+                ></a>
+              </th>
+              <th>
+                الاسم               
+                 <a
+                  href="{{ url_for('bp_account.users', q=q, sort='user_first_name', dir='desc' if sort=='user_first_name' and dir!='desc' else 'asc' )}}"
+                >
+                  <i
+                    class="fas fa-sort {{ 'text-primary' if sort=='user_first_name' else 'text-dark' }}"
+                  ></i
+                ></a>
+              </th>
+              <th>
+                اللقب
+                <a
+                  href="{{ url_for('bp_account.users', q=q, sort='user_last_name', dir='desc' if sort=='user_last_name' and dir!='desc' else 'asc' )}}"
+                >
+                  <i
+                    class="fas fa-sort {{ 'text-primary' if sort=='user_last_name' else 'text-dark' }}"
+                  ></i
+                ></a>
+              </th>
+              <th>
+                الدور 
+                <a
+                  href="{{ url_for('bp_account.users', q=q, sort='role.name', dir='desc' if sort=='role.name' and dir!='desc' else 'asc' )}}"
+                >
+                  <i
+                    class="fas fa-sort {{ 'text-primary' if sort=='role.name' else 'text-dark' }}"
+                  ></i
+                ></a>
+              </th>
+              <th>
+                رقم الولاية
+                <a
+                  href="{{ url_for('bp_account.users', q=q, sort='commune.code_wilaya', dir='desc' if sort=='commune.code_wilaya' and dir!='desc' else 'asc' )}}"
+                >
+                  <i
+                    class="fas fa-sort {{ 'text-primary' if sort=='commune.code_wilaya' else 'text-dark' }}"
+                  ></i
+                ></a>
+              </th>
+              <th>
+                الولاية
+                <a
+                  href="{{ url_for('bp_account.users', q=q, sort='commune.wilaya', dir='desc' if sort=='commune.wilaya' and dir!='desc' else 'asc' )}}"
+                >
+                  <i
+                    class="fas fa-sort {{ 'text-primary' if sort=='commune.wilaya' else 'text-dark' }}"
+                  ></i
+                ></a>
+              </th>
+              {% if not current_user.has_role(consts.ROLE_ADMIN) %}
+                <th>
+                  البلدية
+                  <a
+                  href="{{ url_for('bp_account.users', q=q, sort='commune.commune', dir='desc' if sort=='commune.commune' and dir!='desc' else 'asc' )}}"
+                  >
+                    <i
+                      class="fas fa-sort {{ 'text-primary' if sort=='commune.commune' else 'text-dark' }}"
+                    ></i
+                  ></a>
+                </th>
+              {% endif %}
+              <th>تعديل البيانات</th>
+              <th>تغير كلمة المرور</th>
+              <th>خذف المستخدم</th>
+              
+            </tr>
+          </thead>
+          {% for row in rows %}
+          <tr>
+            <td>{{ row.username }}</td>
+            <td>{{ row.first_name }}</td>
+            <td>{{ row.last_name }}</td>
+            
+            <td>{{ row.roles[0].name }}</td>
+            <td>
+              {% if row.roles[0].name != consts.ROLE_NATIONAL %}
+                {{row.affectation.code_wilaya}}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            <td>
+              {% if row.roles[0].name != consts.ROLE_NATIONAL %}
+                {{ row.affectation.wilaya }}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            {% if not current_user.has_role(consts.ROLE_ADMIN) %}
+              <td>{% if row.roles[0].name != consts.ROLE_COMMUNE %} 
+                    -
+                  {% else %}
+                    {{ row.affectation.commune }}
+                  {% endif %}
+              </td>
+            {% endif %}
+
+            <td>
+              <a href="{{ url_for ('bp_account.edit_user', username=row.username) }}"
+                >تعديل</a
+              >
+            </td>
+            <td>
+              <a href="{{ url_for ('bp_account.reset_password', username=row.username) }}"
+                >تغير كلمة المرور</a
+              >
+            </td>
+            <td>
+              <a  href="#" data-toggle="modal" data-target="#valide_delete"  onclick="myFunction({{ row.id }},'{{ row.username }}', '{{ url_for ('bp_account.delete_user', username= row.username) }}')"
+                >حذف</a
+              >
+              <!-- href="{{ url_for ('bp_account.delete_user', username=row.username) }}" -->
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        <br />
+        <div class="d-flex justify-content-center">{{ pagination.links }}</div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="valide_delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> تاكيد حذف المستخدم</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id ="qst" class="modal-body">
+     
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">العودة</button>
+        <button id = 'deletebtn' type="button" class="btn btn-primary" >حذف المستخدم</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function myFunction(id, username ,url) {
+  var url = url;
+  var qst=document.getElementById("qst")
+  qst.innerHTML = "هل انت متأكد من حذف المستخدم " + username+ "؟"
+
+  var deletebtn =document.getElementById("deletebtn")
+  
+  deletebtn.onclick = function delete_fnc() {
+
+  window.location.href = url;
+}
+  
+}
+
+</script>
+{% endblock %}
