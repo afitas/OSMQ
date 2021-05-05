@@ -1,0 +1,174 @@
+{% set page_id = 11 %} {%extends "layout.html"%} {% block head %} {{ super() }} {% endblock %} {% block menu %}{% include "menus/menu.html" %}{% endblock %} {% block title %}{{ _("الوضعية الحالية للبلديات") }}{% endblock %} {% block title_left %}
+<a href="{{ url_for('bp_progress.excel_wilaya', code_wilaya=code_wilaya) }}" class="btn btn-sm btn-success btnLg">تنزيل النسخة الموسعة</a> {% endblock %} {% block content %}
+<style></style>
+<div id="content">
+  <div>
+    {% if current_user.has_role(consts.ROLE_NATIONAL) %}
+      <select
+        id="wilaya_select"
+        class="float-left form-control"
+        style="width: 300px"
+      >
+        {% for elt in wilaya_list %}
+        <option value="{{elt.code_wilaya}}">{{elt.code_wilaya}} - {{elt.wilaya}}</option>
+        {% endfor %}
+      </select> {% endif %}
+        <div class="form-group has-search float-right">
+            <form mthod="GET">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input name="q" value="{{ q }}" type="text" class="form-control" placeholder="بحت" /> {% if sort %}
+                <input type="hidden" name="" value="" /> {% endif %} {% if dir %}
+                <input type="hidden" name="dir" value="{{ dir }}" /> {% endif %} {% if sort %}
+                <input type="hidden" name="sort" value="{{ sort }}" /> {% endif %} {% if q %}
+                <input type="hidden" name="q" value="{{ q }}" /> {% endif %} {% if code_wilaya %}
+                <input type="hidden" name="code_wilaya" value="{{ code_wilaya }}" /> {% endif %}
+            </form>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="big">
+                    <th class="align-middle">
+                        {{ _("رقم الولاية") }}
+                        <a href="{{ url_for('bp_progress.commune_situation', q=q, sort='code_wilaya', dir='desc' if sort=='code_wilaya' and dir!='desc' else 'asc' )}}">
+                          <i class="fas fa-sort {{ 'text-primary' if sort=='code_wilaya' else 'text-dark' }}"></i
+                        ></a>
+          </th>
+          <th class="align-middle">
+            {{ _("البلدية") }}
+            <a
+              href="{{ url_for('bp_progress.commune_situation', q=q, sort='commune', dir='desc' if sort=='commune' and dir!='desc' else 'asc' )}}"
+            >
+              <i
+                class="fas fa-sort {{ 'text-primary' if sort=='commune' else 'text-dark' }}"
+              ></i
+            ></a>
+          </th>
+          <th class="align-middle">
+            {{ _("الفضاءات المحصاة") }}
+            <a
+              href="{{ url_for('bp_progress.commune_situation', code_wilaya=code_wilaya, q=q, sort='nbEspPubRec', dir='desc' if sort=='nbEspPubRec' and dir!='desc' else 'asc' )}}"
+            >
+              <i
+                class="fas fa-sort {{ 'text-primary' if sort=='nbEspPubRec' else 'text-dark' }}"
+              ></i
+            ></a>
+          </th>
+          <th class="align-middle">
+            {{ _("نسبة الفضاءات المسماة") }}
+            <a
+              href="{{ url_for('bp_progress.commune_situation', code_wilaya=code_wilaya, q=q, sort='perc_bat', dir='desc' if sort=='perc_bat' and dir!='desc' else 'asc' )}}"
+            >
+              <i
+                class="fas fa-sort {{ 'text-primary' if sort=='perc_bat' else 'text-dark' }}"
+              ></i
+            ></a>
+          </th>
+          <th class="align-middle">
+            {{ _("الفضاءات الغير مسماة") }}
+            <a
+              href="{{ url_for('bp_progress.commune_situation', code_wilaya=code_wilaya, q=q, sort='nbEspPubNonBapt', dir='desc' if sort=='nbEspPubNonBapt' and dir!='desc' else 'asc' )}}"
+            >
+              <i
+                class="fas fa-sort {{ 'text-primary' if sort=='nbEspPubNonBapt' else 'text-dark' }}"
+              ></i
+            ></a>
+          </th>
+          <th class="align-middle">
+            {{ _("إقتراحات التسمية المرسلة") }}
+            <a
+              href="{{ url_for('bp_progress.commune_situation', code_wilaya=code_wilaya, q=q, sort='nbBapProp', dir='desc' if sort=='nbBapProp' and dir!='desc' else 'asc' )}}"
+            >
+              <i
+                class="fas fa-sort {{ 'text-primary' if sort=='nbBapProp' else 'text-dark' }}"
+              ></i
+            ></a>
+          </th>
+          <th class="align-middle">
+            {{ _("نسبة التسميات المصادق عليها") }}
+            <a
+              href="{{ url_for('bp_progress.commune_situation', code_wilaya=code_wilaya, q=q, sort='perc_BapValide', dir='desc' if sort=='perc_BapValide' and dir!='desc' else 'asc' )}}"
+            >
+              <i
+                class="fas fa-sort {{ 'text-primary' if sort=='perc_BapValide' else 'text-dark' }}"
+              ></i
+            ></a>
+          </th>
+          <th class="align-middle">
+            {{ _("نسبة لوحات التسمية المركبة") }}
+            <a
+              href="{{ url_for('bp_progress.commune_situation', code_wilaya=code_wilaya, q=q, sort='perc_PlaqNomInst', dir='desc' if sort=='perc_PlaqNomInst' and dir!='desc' else 'asc' )}}"
+            >
+              <i
+                class="fas fa-sort {{ 'text-primary' if sort=='perc_PlaqNomInst' else 'text-dark' }}"
+              ></i
+            ></a>
+          </th>
+          <th class="align-middle">
+            {{ _("التاريخ") }}
+            <a
+              href="{{ url_for('bp_progress.commune_situation', code_wilaya=code_wilaya, q=q, sort='date', dir='desc' if sort=='date' and dir!='desc' else 'asc' )}}"
+            >
+              <i
+                class="fas fa-sort {{ 'text-primary' if sort=='date' else 'text-dark' }}"
+              ></i
+            ></a>
+          </th>
+          <th class="align-middle">{{ _("تفاصيل") }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>
+          <td>{{ row.code_wilaya }}</td>
+          <td>{{ row.commune }}</td>
+          <td>{{ row.nbEspPubRec }}</td>
+          <td>% {{ row.perc_bat }}</td>
+          <td>{{ row.nbEspPubNonBapt }}</td>
+          <td>{{ row.nbBapProp }}</td>
+
+          <td>% {{ row.perc_BapValide }}</td>
+
+          <td>% {{ row.perc_PlaqNomInst }}</td>
+          <td>{{ row.date.strftime('%Y-%m-%d') if row.date }}</td>
+          <td>
+            <a
+              href="{{ url_for ('bp_progress.commune_etat_detail', pk=row.pk) }}"
+              >تفاصيل</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br />
+    <div class="d-flex justify-content-center">{{ pagination.links }}</div>
+  </div>
+</div>
+<script>
+  window.onload = function () {
+    $("#wilaya_select").on("change", function () {
+      let selected_code_wilaya = $(this).val(); // get selected value
+      if (selected_code_wilaya) {
+        var target_url = new URL(window.location.href);
+        target_url.searchParams.set("code_wilaya", selected_code_wilaya);
+        target_url.searchParams.delete("q");
+        window.location = target_url;
+      }
+      return false;
+    });
+    new_url = new URL(window.location.href);
+    let code_wilaya = new_url.searchParams.get("code_wilaya");
+    if (code_wilaya != null) {
+      $("#wilaya_select").val(code_wilaya);
+    }
+  };
+  window.onunload = function () {};
+</script>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+.activeComponent {
+    display: block !important;
+}
+
+.showDebatisation {
+    display: block !important;
+}
+
+.hideComponent {
+    display: none;
+}
+
+/* .modal-with-pdf-preview {
+    max-width: 100%;
+} */

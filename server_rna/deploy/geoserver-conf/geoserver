@@ -1,0 +1,5 @@
+USER=adminrna
+GEOSERVER_DATA_DIR=/usr/share/geoserver/data_dir
+GEOSERVER_HOME=/usr/share/geoserver
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+JAVA_OPTS="-Xms128m -Xmx512m"

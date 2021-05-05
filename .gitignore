@@ -1,0 +1,16 @@
+.DS_Store
+*.pyc
+**venv**
+.vscode
+**__pycache__**
+test.db*
+*.log
+server_rna/instance/config.py
+server_rna/logs/*
+**/static/uploads/
+node_modules
+*.lock
+server_rna/flask_app/static/dist_vuejs
+server_rna/flask_app/templates/map/edit_map.html
+server_rna/flask_app/templates/map/display_map.html
+.env

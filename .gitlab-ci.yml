@@ -1,0 +1,40 @@
+deploy_core_job:
+  stage: deploy
+  script:
+    - rsync -aq --delete --progress . /home/adminrna/rna/ --exclude proxy/node_modules --exclude proxy/.env --exclude vue_apps/node_modules --exclude server_rna/instance/config.py --exclude .git --exclude logs --exclude .venv/
+    - sudo chmod a+x /home/adminrna/rna/server_rna/deploy/*
+    - /home/adminrna/rna/server_rna/deploy/install_req.bash
+    - /home/adminrna/rna/server_rna/deploy/migrate_db.bash
+    - /home/adminrna/rna/server_rna/deploy/load_data.bash
+    - /home/adminrna/rna/server_rna/deploy/deploy_vue_apps.bash
+    - /home/adminrna/rna/server_rna/deploy/obscurify.bash
+    - cd /home/adminrna/rna/proxy && npm install
+    - rm -rf /var/www/static/*
+    - cp -r /home/adminrna/rna/server_rna/flask_app/static/* /var/www/static/
+    - sudo /bin/systemctl restart nginx.service
+    - sudo /bin/systemctl stop rna_core
+    - sudo /bin/systemctl start rna_core
+    - sudo /bin/systemctl restart geoserver_proxy
+  only:
+    - schedules
+    - deploy
+  tags:
+    - rna
+    
+deploy_replication_job:
+  stage: deploy
+  script:
+    - rsync -aq --delete --progress . /home/adminrna/rna/ --exclude server_rna/instance/config.py --exclude .git --exclude logs --exclude .venv/
+    - sudo chmod a+x /home/adminrna/rna/server_rna/deploy/*
+    - /home/adminrna/rna/server_rna/deploy/install_req.bash
+    - /home/adminrna/rna/server_rna/deploy/obscurify.bash
+    - rm -rf /var/www/static/*
+    - cp -r /home/adminrna/rna/server_rna/flask_app/static/* /var/www/static/
+    - sudo /bin/systemctl restart nginx.service
+    - sudo /bin/systemctl stop rna_core
+    - sudo /bin/systemctl start rna_core
+  only:
+    - schedules
+    - deploy
+  tags:
+    - replica

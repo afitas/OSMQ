@@ -1,0 +1,111 @@
+{% set page_id = 5 %}
+{%extends "layout.html"%}
+{% block head %} {{ super() }}  {% endblock %}
+{% block menu %}{% include "menus/menu.html" %}{% endblock %}
+{% block title %}{{ _("إدراج عدد القرارات لكل بلدية") }}
+{% endblock %}
+{% block content %}
+<div>
+
+    <div id="content">
+      <div>
+        <div class="form-group has-search float-right">
+          <span class="fa fa-search form-control-feedback"></span>
+          <form mthod="GET">
+            <input
+              name="q"
+              value="{{ q }}"
+              type="text"
+              class="form-control"
+              placeholder="Search"
+            />
+          </form>
+        </div>
+      </div>
+      <br /><br /><br /><br />
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr class="head">
+              <th>
+                رمز البلدية
+                <a
+                  href="{{ url_for('bp_decision.get_number', q=q, sort='pk_commune', dir='desc' if sort=='pk_commune' and dir!='desc' else 'asc' )}}"
+                >
+                  <i
+                    class="fas fa-sort {{ 'text-primary' if sort=='pk_commune' else 'text-dark' }}"
+                  ></i
+                ></a>
+              </th>
+              <th>
+                اسم البلدية
+                <a
+                  href="{{ url_for('bp_decision.get_number', q=q, sort='commune', dir='desc' if sort=='commune' and dir!='desc' else 'asc' )}}"
+                >
+                  <i
+                    class="fas fa-sort {{ 'text-primary' if sort=='commune' else 'text-dark' }}"
+                  ></i
+                ></a>
+              </th>
+              <th>
+                عدد القرارات
+              </th>
+            </tr>
+          </thead>
+          {% for row in rows %}
+          <tr>
+            <td>{{ row.pk }}</td>
+            <td>{{ row.commune }}</td>
+            <form>
+              <td name="input_data" class="my-inputs">
+                {{ form.csrf_token }}
+                {{ form.pk_commune(value=row.pk) }}
+                {{ form.nb_decision(value=row.decision_number.nb_decision) }}
+              </td>
+            </form>
+          </tr>
+          {% endfor %}
+        </table>
+        <br />
+        <div class="d-flex justify-content-center">{{ pagination.links }}</div>
+      </div>
+    </div>
+</div>
+<script>
+$('input[name="nb_decision"]').each(function() {
+   if ($(this).val() != "") {
+      $(this).css("background-color", "#a7e08b");
+   }else{
+      $(this).css("background-color", "#FFFFFF");
+  }
+});
+
+$('input[name="nb_decision"]').focus(function(){
+  $(this).css("background-color", "#D2D8BE");
+});
+
+$('input[name="nb_decision"]').on('keypress blur', function(e){
+  if (e.which == 13) {
+    e.preventDefault()
+  }
+  if(e.which == 13 || e.type === 'blur') {
+    $.ajax({
+      context: this,
+      url: '/decision/number',
+      type: 'POST',
+      headers: {
+                'X-CSRFToken': $('input[name="csrf_token"]').attr('value')
+                },
+      data: {'nb_decision': $(this).val(),
+             'pk_commune': $(this).prev().attr('value')},
+      success: function(){if ($(this).val() != "") {
+                            $(this).css("background-color", "#a7e08b");
+                         }else{
+                            $(this).css("background-color", "#FFFFFF");
+                         }},
+      error: function(){ $(this).css("background-color", "#EB4112"); }
+    });      
+    }
+});
+</script>
+{% endblock %}

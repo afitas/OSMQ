@@ -1,0 +1,9 @@
+SQLALCHEMY_DATABASE_URI = 'postgresql://adminrna:admin@127.0.0.1:5432/rna'
+SERVER_NAME = '192.168.0.235'
+DEBUG = True
+SECRET_KEY = "153asd@sa484-/*-+-dasdg*//<*ù^$*/*-46a8d"
+SECURITY_PASSWORD_HASH = "sha512_crypt"
+SECURITY_PASSWORD_SALT = "sa484-/s*153a-d^$*/+dsd*-48d@-6ag*/a/<*ù"
+UPLOADS_DEFAULT_DEST="/home/adminrna/uploads"
+UPLOADS_DEFAULT_URL="/uploads"
+LOG_PATH = "/var/log/rna/"

@@ -1,0 +1,13 @@
+[Unit]
+Description=Geoserver
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/geoserver
+Type=simple
+ExecStart=/usr/share/geoserver/bin/startup.sh
+ExecStop=/usr/share/geoserver/bin/shutdown.sh
+User=root
+
+[Install]
+WantedBy=multi-user.target

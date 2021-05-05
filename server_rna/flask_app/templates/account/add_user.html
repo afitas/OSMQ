@@ -1,0 +1,90 @@
+{% set page_id = 3 %} {%extends "layout.html"%} {% block head %} {{ super() }} {% endblock %} {% block menu %}{% include "menus/menu.html" %}{% endblock %} {% block title %}{{ _("إضافة مستخدم جديد") }}{% endblock %} {% block content %}
+
+<div class="container">
+    <div class="row ">
+
+        <div class="col-12">
+            <form class="needs-validation" method="POST" autocomplete="off" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.username.label }} {{ form.username(class="form-control" + (" is-invalid" if form.username.errors else "")) }}
+                    <div class="invalid-feedback">
+                        {{ form.username.errors | first }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.first_name.label }} {{ form.first_name(class="form-control" + (" is-invalid" if form.first_name.errors else "")) }}
+                    <div class="invalid-feedback">
+                        {{ form.first_name.errors | first }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.last_name.label }} {{ form.last_name(class="form-control" + (" is-invalid" if form.last_name.errors else "")) }}
+                    <div class="invalid-feedback">
+                        {{ form.last_name.errors | first }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.roles.label }} {{ form.roles(class="form-control" + (" is-invalid" if form.roles.errors else "")) }}
+                    <div class="invalid-feedback">
+                        {{ form.roles.errors | first }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.affectation.label }} {{ form.affectation(class="form-control" + (" is-invalid" if form.affectation.errors else "")) }}
+                    <div class="invalid-feedback">
+                        {{ form.affectation.errors | first }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }} {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else "")) }}
+                    <div class="invalid-feedback">
+                        {{ form.password.errors | first }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.confirm.label }} {{ form.confirm(class="form-control" +(" is-invalid" if form.confirm.errors else "")) }}
+                    <div class="invalid-feedback">
+                        {{ form.confirm.errors | first }}
+                    </div>
+                </div>
+                {{ form.submit() }}
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('form').submit(function() {
+        $("form :disabled").removeAttr('disabled');
+    });
+
+    function setAffectationOptions() {
+        var role = document.getElementById('roles');
+        var affectation = document.getElementById('affectation');
+        if (role.value == 1) {
+            if (affectation.options[0].value != "0001"){
+                affectation.options.add(new Option("كل الجزائر", "0001"), 0);
+                affectation.selectedIndex = 0;
+                affectation.setAttribute("disabled", "true");
+            }
+        } else if (role.value == 2) {
+            if (affectation.options[0].value == "0001"){
+                affectation.remove(0);
+                affectation.removeAttribute("disabled");
+            }
+        } else if (role.value == 3) {
+            affectation.selectedIndex = 0;
+            affectation.setAttribute("disabled", "true");
+        } else if (role.value == 4) {
+            affectation.removeAttribute("disabled");
+        }
+    }
+    setAffectationOptions()
+
+    window.onload = () => {
+        const myInput = document.getElementById('confirm');
+        myInput.onpaste = e => e.preventDefault();
+    }
+</script>
+{% endblock %}
