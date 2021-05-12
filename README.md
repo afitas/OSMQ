@@ -2,6 +2,18 @@
 
 &nbsp;
 
+#### **description :**
+
+- OpenStreetMap (OSM) is a collaborative online mapping project. This project can be compared to that of Wikipedia for a free and open map of the whole world. OSM groups together visible physical objects such as: roads, buildings, services of public interest (schools, hospitals, etc.), shops, industries, water and sanitation points, natural environments, etc. non-visible features such as transport lines, place names or administrative boundaries. Volunteers from all over the world, more commonly known as “contributors”, share this information with OSM's own. Indeed, the number of contributions is increasing exponentially, due to its growing popularity. Several problems arise from this in evaluating the quality of these data.
+
+- The most common approach to data quality assessment is to compare OSM data to a benchmark dataset (also called the extrinsic approach). However, this reference data is not always available, and this for various reasons, related to the right to use government data, or for exorbitant license prices. In order to answer this problem, an intrinsic approach will be used, where the OSM data will be compared to itself according to a predefined time interval.
+
+- The main objective of this work is to develop a web application, by applying statistical calculation methods on historical OSM data. This will allow us to assess the quality of our data set according to the completeness of the road network, the development of invalid geometries (invalid polygons), the news of OSM entities, but also the study of the behavior of contributors. These results will be represented in the form of graphs but also in cartographic form. With the help of these, we will be able to decide on the quality of our data set.
+
+Keywords: OpenStreetMap, Completeness, exhaustiveness, road network, intrinsic indicators, Web application.
+
+&nbsp;
+
 #### **Dependencies :**
 
 - python >= 3.6
