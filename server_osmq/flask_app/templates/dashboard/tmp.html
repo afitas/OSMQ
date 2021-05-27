@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 600px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+    <title>OpenLayers example</title>
+  </head>
+  <body>
+    <h2>My Map</h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          }),
+          new ol.layer.VectorTile({
+                        source: new ol.source.VectorTile({
+                            format: new ol.format.MVT(),
+                            url: "{{ url_for('bp_dashboard.tiles') }}/{z}/{x}/{y}"
+                        }),
+                        style: function(feature, res) {
+                            return new ol.style.Style({
+                                stroke: new ol.style.Stroke({
+                                    width: 2,
+                                    color: 'rgba(0, 102, 204)'
+                                })
+                            })
+                        }
+                    }),
+             new ol.layer.VectorTile({
+                        source: new ol.source.VectorTile({
+                            format: new ol.format.MVT(),
+                            url: "{{ url_for('bp_dashboard.tiles_point') }}/{z}/{x}/{y}"
+                        }),
+                        // style: function(feature, res) {
+                        //     return new ol.style.Style({
+                        //         stroke: new ol.style.Stroke({
+                        //             width: 2,
+                        //             color: 'rgba(0,255,0)'
+                        //         })
+                        //     })
+                        // }
+                    }),
+            new ol.layer.VectorTile({
+                        source: new ol.source.VectorTile({
+                            format: new ol.format.MVT(),
+                            url: "{{ url_for('bp_dashboard.tiles_poly') }}/{z}/{x}/{y}"
+                        }),
+                        style: function(feature, res) {
+                            return new ol.style.Style({
+                                stroke: new ol.style.Stroke({
+                                    width: 2,
+                                    color: 'rgba(0,255,255)'
+                                })
+                            })
+                        }
+                    })
+                    
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-0.641085, 35.698944]),
+          zoom: 12
+        })
+      });
+    </script>
+  </body>
+</html>

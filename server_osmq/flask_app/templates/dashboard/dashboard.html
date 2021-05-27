@@ -1,5 +1,6 @@
 {% set page_id = 1 %} {%extends "layout.html"%} {% block head %} {{ super() }} {% endblock %} {% block menu %}{% include "menus/menu.html" %}{% endblock %} {% block title %}
-    <h3 style="width: 80%;">{{ _(" لوحة القيادة") }} 
+    <h3 style="width: 80%;">
+        {{ _(" لوحة القيادة") }} 
         {% if commune_name %} لبلدية {{ commune_name }}{% endif %}
         {% if code_wilaya != "00" %}
             {% if wilaya_name  %}( ولاية {{ wilaya_name }} ){% endif %}

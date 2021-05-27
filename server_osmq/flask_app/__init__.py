@@ -38,6 +38,7 @@ def create_dirs(app):
 def register_extensions(app):
     """Register Flask extensions."""
     db.init_app(app)
+    app.app_context().push()
     rna_log.init_app(app)
     csrf_protect.init_app(app)
     migrate.init_app(app, db)
