@@ -5,181 +5,375 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ url_for('static', filename='css/landingpage.css') }}" rel="stylesheet" /> 
-    <!-- <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous"> -->
-    <title>DASHBOARD-OSMQ</title>
+    <link href="{{ url_for('static', filename='css/dash.css') }}" rel="stylesheet" /> 
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src='/static/js/jqslim.min.js'></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+<script src='/static/js/popper.min.js'></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script> -->
+<script src='/static/js/bootstrap.min.js'></script>
+    <title>Tableau de bord OSM Quality</title>
       <!-- Font Awesome Icons -->
     <!-- You can use href="/path/to/your/file.format", but I prefer this way to make it looks Flask-like-->
     <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminlte.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/adminlte.min.css') }}"> -->
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stlesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vega-tooltip@0.16.0/vega-tooltip.scss">
-
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font.css') }}">
+    <!-- <link rel="stlesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vega-tooltip@0.16.0/vega-tooltip.scss"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vega-tooltip.scss') }}">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js"></script> -->
+    <script src='/static/js/jspdf.debug.js'></script>
     <script src='/static/chart-js/Chart.min.js'></script>
     <script src='/static/js/Chart.min.js'></script>
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favrna.png') }}"/>  
-    <!-- Load OpenLayer.css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css">
+
+    <!-- dashbord import style -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/">
+    <!-- Bootstrap core CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
-    
-    <div class="wrapper">
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">APPLICATION WEB OSM-Quality</a>
+    </nav>
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <!-- <img src="/static/img/OSM.png" width="80px" height="80px" alt=""> -->
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                    <!-- Altair -->
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link ">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Chart For OSMQ
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="" class="nav-link ">
-                                   
-                                    <p>Evaluation de la qualité de donée OSM</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link ">
-                                    
-                                    <p>Altair</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link ">
-                                    
-                                    <p>Chart.Js</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> 
-                        <form>
-                            <div>
-                            <a href="" class="nav-link ">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Choisir une ville
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            </div>
-                            <select class="form-control">
-                                <option>Oran</option>
-                                <option>Alger</option>
-                            </select>
-                            <button onclick="showChart();" type="button" class="btn btn-primary">Executer l'évaluation</button>
-                        </form>
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            {% block my_content %}
-            {% endblock my_content %}
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <div class="content">
-                
-                        <div id="map"class="map" width="800" height="450"  style="display: none;"></div>
-                        <canvas id="line_actuality" width="800" height="450"  style="display: none;"></canvas>
-                        <canvas id="point_actuality" width="800" height="450"  style="display: none;"></canvas>
-                        <canvas id="polygon_actuality" width="800" height="450"  style="display: none;"></canvas>
-                        <canvas id="Completude" width="800" height="450"  style="display: none;"></canvas>
-                        <canvas id="distinct" width="800" height="450"  style="display: none;"></canvas>
-                        <canvas id="calass" width="800" height="450"  style="display: none;"></canvas>
-                        <canvas id="crea_edit_point" width="800" height="450" style="display: none;"></canvas>
-                        <canvas id="crea_edit_line" width="800" height="450" style="display: none;"></canvas>
-                        <canvas id="crea_edit_poly" width="800" height="450" style="display: none;"></canvas>
-                        <canvas id="poly" width="800" height="450" style="display: none;"></canvas>
-                    
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a id="navMain" class="nav-link active" href="#">
+                  <span data-feather="home"></span>   
+                  Tableau de bord 
+                  <!-- <span id="current" class="sr-only" style="display: none;">(current)</span> -->
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="navIndic1" class="nav-link" onclick="return indic1();" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Inticateur de l'Actualité des entitées OSM 
+                  <!-- <span id="current" class="sr-only">(current)</span> -->
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="navIndic2" class="nav-link" onclick="return indic2();" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Inticateur sur la Complètude 
+                  <!-- <span id="current" class="sr-only" style="display: none;">(current)</span> -->
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="navIndic3" class="nav-link" onclick="return indic3();" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Inticateur sur la Géométries 
+                  <!-- <span id="current" class="sr-only" style="display: none;">(current)</span> -->
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="navIndic4" class="nav-link" onclick="return indic4();" href="#">
+                  <span data-feather="users"></span>
+                  Inticateur sur les Contributeurs
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Integrations
+                </a>
+              </li> -->
               
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Console Log reports</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="server"></span>
+              </a>
+            </h6>
+            <ul class="nav flex-column mb-2">
+                <div id="console">
+                      <div id="consolebody">
+                        <p>> Merci de cliquer sur le button "Executer l'évatluation"</p>
+                      </div>
+                </div>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 id="title" class="h2">Dashboard</h1>
+            <div class="btn-toolbar ">
+             <button id="downloadPdf" class="btn btn-sm btn-outline-secondary">Exporter le Rapport</button>
             </div>
-            <!-- /.content -->
+          </div>
+
+          <div id="dashCard" class="card text-center mb-3">
+            <div id="card_bg" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title">Evaluation de la qualité de donnée Open Steet Map en utilisant des indicateurs intinsèques</h5>
+              <p id="cardText" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <select id="cardSelect" class="mx-auto form-control form-control-sm" style="width: 100px;">
+                <option>Oran</option>
+                <!-- <option>Alger</option> -->
+            </select>        
+            <button id="runBtn" type="button" class="btn btn-primary">Executer l'évaluation</button>
+
+              <div class="d-flex justify-content-center">
+                <div id="loadingDiv" class="spinner-border text-primary" role="status" style="display: none;">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+            <!-- <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Dolorum exercitationem praesentium aliquid distinctio error odit fugit facere optio aliquam dicta illo commodi, 
+                incidunt repudiandae saepe? In laboriosam ad tempora sit?
+            </p> -->
+           
+            
+          <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+
+        <div id="indic1div"  style="display: none;">
+          <canvas id="line_actuality" width="800" height="450"  style="display: none;"></canvas>
+          <canvas id="point_actuality" width="800" height="450"  style="display: none;"></canvas>
+          <canvas id="polygon_actuality" width="800" height="450"  style="display: none;"></canvas>
+          <div id="mapanalyse" class="card" style="display: none;">
+            <div id="map_bg" class="card-img-top"></div>
+            <div class="card-body">
+              <h5 class="card-title">Analyse sur carte</h5>
+              <p class="card-text">Cliquer sur le boutton Map pour effectué des analyse approfondi sur l'actualité de toutes les entitées historique d'OSM</p>
+              <a href="#" onclick="Full_W_P('http://127.0.0.1:5000/map')" class="btn btn-primary">Map</a>
+            </div>
+          </div>
         </div>
-        <!-- /.content-wrapper -->
+        <div id="indic2div"  style="display: none;">
+          <canvas id="Completude" width="850" height="450"  style="display: none;"></canvas>
+          <canvas id="distinct" width="850" height="450"  style="display: none;"></canvas>
+        </div>
+        <div id="indic3div"  style="display: none;">
+          <canvas id="poly" width="850" height="450" style="display: none;"></canvas>
+        </div>
+        <div id="indic4div"  style="display: none;">
+          <canvas id="calass" width="800" height="450"  style="display: none;"></canvas>
+          <canvas id="crea_edit_point" width="800" height="450" style="display: none;"></canvas>
+          <canvas id="crea_edit_line" width="800" height="450" style="display: none;"></canvas>
+          <canvas id="crea_edit_poly" width="800" height="450" style="display: none;"></canvas>
+        </div>
+        
+        
+        
 
-        <!-- Control Sidebar -->
-        <!-- /.control-sidebar -->
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-            </div>
-            <!-- Default to the left -->
-        </footer>
+          <!-- <h2>Section title</h2>
+          <div class="table-responsive">
+            
+          </div> -->
+        </main>
+      </div>
     </div>
-    <!-- ./wrapper -->
-   
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
     
     <script src="/static/js/Chart.min.2.7.2.js"></script>
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/plugin"></script>
-<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script> -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/plugin"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script> -->
+    <script src="/static/js/ol.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script> -->
 
-</body>
+    <!-- Icons -->
+    <!-- <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script> -->
+    <script src="/static/js/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+    
+  </body>
 
 <script>
-    function showChart(){
-        document.getElementById("map").style.display = 'block'
+
+$('#downloadPdf').click(function(event) {
+  // get size of report page
+  var reportPageHeight = $('#reportPage').innerHeight();
+  var reportPageWidth = $('#reportPage').innerWidth();
+  
+  // create a new canvas object that we will populate with all other canvas objects
+  var pdfCanvas = $('<canvas />').attr({
+    id: "canvaspdf",
+    width: reportPageWidth,
+    height: reportPageHeight
+  });
+  
+  // keep track canvas position
+  var pdfctx = $(pdfCanvas)[0].getContext('2d');
+  var pdfctxX = 0;
+  var pdfctxY = 0;
+  var buffer = 100;
+  
+  // for each chart.js chart
+  $("canvas").each(function(index) {
+    // get the chart height/width
+    var canvasHeight = $(this).innerHeight();
+    var canvasWidth = $(this).innerWidth();
+    
+    // draw the chart into the new canvas
+    pdfctx.drawImage($(this)[0], pdfctxX, pdfctxY, canvasWidth, canvasHeight);
+    pdfctxX += canvasWidth + buffer;
+    
+    // our report page is in a grid pattern so replicate that in the new canvas
+    if (index % 2 === 1) {
+      pdfctxX = 0;
+      pdfctxY += canvasHeight + buffer;
+    }
+  });
+  
+  // create new pdf and add our new canvas as an image
+  var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
+  pdf.addImage($(pdfCanvas)[0], 'PNG', 0, 0);
+  
+  // download the pdf
+  pdf.save('filename.pdf');
+});
+
+    function Full_W_P(url) {
+    params  = 'width='+screen.width;
+    params += ', height='+screen.height;
+    params += ', top=0, left=0'
+    params += ', fullscreen=yes';
+    params += ', directories=no';
+    params += ', location=no';
+    params += ', menubar=no';
+    params += ', resizable=no';
+    params += ', scrollbars=no';
+    params += ', status=no';
+    params += ', toolbar=no';
+
+
+    newwin=window.open(url,'FullWindowAll', params);
+    if (window.focus) {newwin.focus()}
+    return false;
+    }
+    function newtab(){
+        window.open('http://127.0.0.1:5000/map','_blank','newWin','fullscreen="yes"')
+    }
+
+    function indic1(){
+        $('.nav li a').removeClass('active');
+        $('#navIndic1').addClass('active');
+        $('#navMain').css("pointer-events", "none");
+                        
+        $('#dashCard').css("display", "none");
+        $('#indic2div').css("display", "none");
+        $('#indic3div').css("display", "none");
+        $('#indic4div').css("display", "none");
+        $('#title').text('Inticateur de l\'Actualité des entitées OSM')
+        showindic1();
+        $('#consolebody').append('<p> > ' + "Inticateur de l\'Actualité des entitées OSM" + '</p>');
+    }
+
+    function indic2(){
+        $('.nav li a').removeClass('active');
+        $('#navIndic2').addClass('active');
+        $('#navMain').css("pointer-events", "none");
+
+        $('#dashCard').css("display", "none");
+        $('#indic1div').css("display", "none");
+        $('#indic3div').css("display", "none");
+        $('#indic4div').css("display", "none");
+        $('#title').text('Inticateur sur la Complètude')
+        showindic2();
+        $('#consolebody').append('<p> > ' + "Inticateur sur la Complètude" + '</p>');
+    }
+
+    function indic3(){
+        $('.nav li a').removeClass('active');
+        $('#navIndic3').addClass('active');
+        $('#navMain').css("pointer-events", "none");
+
+        $('#dashCard').css("display", "none");
+        $('#indic2div').css("display", "none");
+        $('#indic1div').css("display", "none");
+        $('#indic4div').css("display", "none");
+        $('#title').text('Inticateur sur la Géométries')
+        showindic3();
+        $('#consolebody').append('<p> > ' + "Inticateur sur la Géométries" + '</p>');
+    }
+
+    function indic4(){
+        $('.nav li a').removeClass('active');
+        $('#navIndic4').addClass('active');
+        $('#navMain').css("pointer-events", "none");
+
+        $('#dashCard').css("display", "none");
+        $('#indic2div').css("display", "none");
+        $('#indic3div').css("display", "none");
+        $('#indic1div').css("display", "none");
+        $('#title').text('Inticateur sur les Contributeurs')
+        showindic4();
+        $('#consolebody').append('<p> > ' + "Inticateur sur les Contributeurs" + '</p>');
+    }
+
+const yourFunction = async () => {
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  await delay(1500);
+  $('#consolebody').append('<p> > ' + "Base de données en cours de connection..." + '</p>');
+  await delay(1500);
+  $('#consolebody').append('<p> > ' + "Connection avec succes" + '</p>');
+    $('#consolebody').append('<p> > ' + "traitement des données en cours..." + '</p>');
+  
+  await delay(7000);
+  $('.nav-link').css("pointer-events", "auto");
+  $('#consolebody').append('<p> > ' + "Opération terminée avec succes." + '</p>');
+  $('#cardSelect').css("display", "none");
+  $('#cardText').text('Veillez consulter les resultats')
+  $('#loadingDiv').css("display", "none");
+  
+};
+$('#runBtn').click(function(e){
+    this.style.display = 'none';
+    $('#loadingDiv').css("display", "block");
+    yourFunction();
+});
+
+
+    function showindic1(){
+        document.getElementById("indic1div").style.display = 'block'
         document.getElementById("line_actuality").style.display = 'block'
         document.getElementById("point_actuality").style.display = 'block'
         document.getElementById("polygon_actuality").style.display = 'block'
+        document.getElementById("mapanalyse").style.display = 'block'
+    }
+
+    function showindic2(){
+        document.getElementById("indic2div").style.display = 'block'
         document.getElementById("Completude").style.display = 'block'
         document.getElementById("distinct").style.display = 'block'
+    }
+
+    function showindic3(){
+        document.getElementById("indic3div").style.display = 'block'
+        document.getElementById("poly").style.display = 'block'
+    }
+
+    function showindic4(){
+        document.getElementById("indic4div").style.display = 'block'
         document.getElementById("calass").style.display = 'block'
         document.getElementById("crea_edit_point").style.display = 'block'
         document.getElementById("crea_edit_poly").style.display = 'block'
         document.getElementById("crea_edit_line").style.display = 'block'
-        document.getElementById("poly").style.display = 'block'
     }
 
     function loadData(){
@@ -187,32 +381,7 @@
         setTimeout(showChart, 3000);  
     }
 
-    var map = new ol.Map({
-                target: "map",
-                view: new ol.View({
-                    center: [1253220.67184,5430658.10783],
-                    zoom: 8
-                }),
-                layers: [
-                    new ol.layer.Tile({
-                        source: new ol.source.OSM()
-                    }),
-                    new ol.layer.VectorTile({
-                        source: new ol.source.VectorTile({
-                            format: new ol.format.MVT(),
-                            url: "#"
-                        }),
-                        style: function(feature, res) {
-                            return new ol.style.Style({
-                                stroke: new ol.style.Stroke({
-                                    width: 2,
-                                    color: 'rgba(0, 102, 204)'
-                                })
-                            })
-                        }
-                    })
-                ]
-            });
+    
     // Global parameters:
     // do not resize the chart canvas when its container does (keep at 600x400px)
     Chart.defaults.global.responsive = false;
@@ -648,15 +817,6 @@
             }
         }
         });  
-
-    function myFunction() {
-        window.location.href = "{{ url_for('bp_dashboard.dashboard') }}"
-    };
-
-    function map() {
-        window.location.href = "{{ url_for('bp_map.map') }}"
-
-    }
 </script>
 
 </html>

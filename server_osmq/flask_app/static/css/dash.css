@@ -1,0 +1,116 @@
+
+
+#card_bg {
+    background-image: url('/static/img/charts_map.jpg');
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+#map_bg{
+    background-image: url('/static/img/map2.jpg');
+    height: 270px;
+    width: 100%;
+    background-size: cover;
+    background-position: 25% 25%;
+}
+
+.nav-link{
+    pointer-events: none;
+}
+
+.nav li a #dashmain {
+    pointer-events: none;
+}
+
+
+#console {
+    font-family: 'Fira Mono';
+    width: auto;
+    height: 450px;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 5px;
+  }
+  
+#console header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #555;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #DDD;
+  }
+  
+#console #consolebody {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: border-box;
+    padding: 20px;
+    height: calc(100% - 40px);
+    overflow: scroll;
+    background-color: #000;
+    color: #63de00;
+  }
+  
+#console #consolebody p {
+    line-height: 15px;
+  }
+
+#runBtn{
+    margin-top: 15px;
+}
+
+#loadingDiv{
+    margin-top: 15px;
+}
+
+#mapanalyse{
+    float : left;
+    width : 49%;
+    margin-bottom: 20px;
+}
+
+#indic1div canvas{
+      float : left;
+      width : 49%;
+      margin-bottom: 100px;
+      border:#dfdfdf 1px solid;
+      border-radius: 5px;
+      margin-right: 10px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+  }
+
+#indic2div canvas{
+    float : left;
+    width : 70%;
+    margin-bottom: 100px;
+    border:#dfdfdf 1px solid;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 0 20px 20px 20px;
+}
+
+#indic3div canvas{
+    float : left;
+    width : 70%;
+    margin-bottom: 50px;
+    border:#dfdfdf 1px solid;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 0 20px 20px 20px;
+}
+
+#indic4div canvas{
+    float : left;
+    width : 49%;
+    border:#dfdfdf 1px solid;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
