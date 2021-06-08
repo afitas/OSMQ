@@ -93,7 +93,7 @@
             </ul>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Console Log reports</span>
+              <span>Console Log Serveur</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <span data-feather="server"></span>
               </a>
@@ -112,7 +112,7 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 id="title" class="h2">Dashboard</h1>
             <div class="btn-toolbar ">
-             <button id="downloadPdf" class="btn btn-sm btn-outline-secondary">Exporter le Rapport</button>
+             <button id="downloadPdf" class="btn btn-sm btn-outline-secondary" style="display: none;">Exporter le Rapport</button>
             </div>
           </div>
 
@@ -131,8 +131,13 @@
                 <div id="loadingDiv" class="spinner-border text-primary" role="status" style="display: none;">
                   <span class="sr-only">Loading...</span>
                 </div>
+                <div class="btn-toolbar ">
+                  <button id="downloadall" class="btn btn-sm btn-outline-secondary mx-auto" style="display: none; width: 200px;">Exporter le Rapport</button>
+                </div>
               </div>
             </div>
+            
+
           </div>
           
             <!-- <p>
@@ -204,48 +209,73 @@
   </body>
 
 <script>
+$("#downloadPdf").click(function(){
+  var pdf = new jsPDF();
+  pageHeight= pdf.internal.pageSize.height;
 
-$('#downloadPdf').click(function(event) {
-  // get size of report page
-  var reportPageHeight = $('#reportPage').innerHeight();
-  var reportPageWidth = $('#reportPage').innerWidth();
-  
-  // create a new canvas object that we will populate with all other canvas objects
-  var pdfCanvas = $('<canvas />').attr({
-    id: "canvaspdf",
-    width: reportPageWidth,
-    height: reportPageHeight
-  });
-  
-  // keep track canvas position
-  var pdfctx = $(pdfCanvas)[0].getContext('2d');
-  var pdfctxX = 0;
-  var pdfctxY = 0;
-  var buffer = 100;
-  
-  // for each chart.js chart
-  $("canvas").each(function(index) {
-    // get the chart height/width
-    var canvasHeight = $(this).innerHeight();
-    var canvasWidth = $(this).innerWidth();
-    
-    // draw the chart into the new canvas
-    pdfctx.drawImage($(this)[0], pdfctxX, pdfctxY, canvasWidth, canvasHeight);
-    pdfctxX += canvasWidth + buffer;
-    
-    // our report page is in a grid pattern so replicate that in the new canvas
-    if (index % 2 === 1) {
-      pdfctxX = 0;
-      pdfctxY += canvasHeight + buffer;
-    }
-  });
-  
-  // create new pdf and add our new canvas as an image
-  var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
-  pdf.addImage($(pdfCanvas)[0], 'PNG', 0, 0);
-  
-  // download the pdf
-  pdf.save('filename.pdf');
+  if ($("#navIndic1").hasClass('active')) {
+    $('#indic1div canvas').each(function(i, ele) {
+      if ((i*130 + 130) >= pageHeight)
+      {
+        pdf.addPage();
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, 20, 210, 119);
+      }else{
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, i*130 +20, 210, 119);
+      }
+    });
+    pdf.save("Inticateur_de_lActualité_des_entites_OSM.pdf");
+  } else if($("#navIndic2").hasClass('active')){
+    $('#indic2div canvas').each(function(i, ele) {
+      if ((i*130 + 130) >= pageHeight)
+      {
+        pdf.addPage();
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, 20, 210, 119);
+      }else{
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, i*130 +20, 210, 119);
+      }
+    });
+    pdf.save("Inticateur_sur_la_Completude.pdf");
+  } else if($("#navIndic3").hasClass('active')){
+    $('#indic3div canvas').each(function(i, ele) {
+      if ((i*130 + 130) >= pageHeight)
+      {
+        pdf.addPage();
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, 20, 210, 119);
+      }else{
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, i*130 +20, 210, 119);
+      }
+    });
+    pdf.save("Inticateur_sur_la_Geometrie.pdf");
+  } else if($("#navIndic4").hasClass('active')){
+    $('#indic4div canvas').each(function(i, ele) {
+      if ((i*130 + 130) >= pageHeight)
+      {
+        pdf.addPage();
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, 20, 210, 119);
+      }else{
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, i*130 +20, 210, 119);
+      }
+    });
+    pdf.save("Inticateur_sur_les_Contributeurs.pdf");
+  }
+
+});
+
+$("#downloadall").click(function(){
+  var pdf = new jsPDF();
+  pageHeight= pdf.internal.pageSize.height;
+
+  $('canvas').each(function(i, ele) {
+      if ((i*130 + 130) >= pageHeight)
+      {
+        pdf.addPage();
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, 20, 210, 119);
+      }else{
+        pdf.addImage(ele.toDataURL(), 'JPEG', 0, i*130 +20, 210, 119);
+      }
+    });
+    pdf.save("Inticateurs_Rapport.pdf");
+
 });
 
     function Full_W_P(url) {
@@ -274,7 +304,7 @@ $('#downloadPdf').click(function(event) {
         $('.nav li a').removeClass('active');
         $('#navIndic1').addClass('active');
         $('#navMain').css("pointer-events", "none");
-                        
+        $('#downloadPdf').css("display", "block");                
         $('#dashCard').css("display", "none");
         $('#indic2div').css("display", "none");
         $('#indic3div').css("display", "none");
@@ -288,7 +318,7 @@ $('#downloadPdf').click(function(event) {
         $('.nav li a').removeClass('active');
         $('#navIndic2').addClass('active');
         $('#navMain').css("pointer-events", "none");
-
+        $('#downloadPdf').css("display", "block");  
         $('#dashCard').css("display", "none");
         $('#indic1div').css("display", "none");
         $('#indic3div').css("display", "none");
@@ -302,7 +332,7 @@ $('#downloadPdf').click(function(event) {
         $('.nav li a').removeClass('active');
         $('#navIndic3').addClass('active');
         $('#navMain').css("pointer-events", "none");
-
+        $('#downloadPdf').css("display", "block");  
         $('#dashCard').css("display", "none");
         $('#indic2div').css("display", "none");
         $('#indic1div').css("display", "none");
@@ -316,7 +346,7 @@ $('#downloadPdf').click(function(event) {
         $('.nav li a').removeClass('active');
         $('#navIndic4').addClass('active');
         $('#navMain').css("pointer-events", "none");
-
+        $('#downloadPdf').css("display", "block");  
         $('#dashCard').css("display", "none");
         $('#indic2div').css("display", "none");
         $('#indic3div').css("display", "none");
@@ -338,7 +368,8 @@ const yourFunction = async () => {
   $('.nav-link').css("pointer-events", "auto");
   $('#consolebody').append('<p> > ' + "Opération terminée avec succes." + '</p>');
   $('#cardSelect').css("display", "none");
-  $('#cardText').text('Veillez consulter les resultats')
+  $('#cardText').text('Veillez consulter les resultats, disponible au format PDF sur le lien ci-dessous, ainsi que sur la barre latérale.')
+  $('#downloadall').css("display", "block");
   $('#loadingDiv').css("display", "none");
   
 };
@@ -813,7 +844,7 @@ $('#runBtn').click(function(e){
                 }},
             title: {
             display: true,
-            text: 'Evolution et Développement du nombre de polygones invalides comparés ainsi que du Pourcentage de polygones invalides de tous les polygones durant la période étudiée'
+            text: 'Evolution et Développement du nombre de polygones invalides, ainsi que du Pourcentage de polygones invalides de tous les polygones durant la période étudiée'
             }
         }
         });  

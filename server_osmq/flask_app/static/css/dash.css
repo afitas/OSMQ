@@ -24,6 +24,11 @@
     pointer-events: none;
 }
 
+#cardText #cardSelect {
+    font-weight: 500;
+    color: #333;
+}
+
 
 #console {
     font-family: 'Fira Mono';
