@@ -18,7 +18,7 @@ Keywords: OpenStreetMap, Completeness, exhaustiveness, road network, intrinsic i
 
 - python >= 3.6
 - postgresql >= 10 (optinally)
-- nodejs >= 12
+- Geo-server >= 12
 
 &nbsp;
 
@@ -31,9 +31,11 @@ cd OSMQ
 
 &nbsp;
 
-#### **2- Configuration :**
+#### **2- Load DATA :**
 
-Eventually you can override the config.py file configuration by creating a new file server_rna\instance\config.py from server_rna\instance\config.py.template, and put in it your configuration for example your local database connection path or your local directories.
+PostgreSQL Must be instaled on your computer
+cd OSMQ\server_osmq
+load_data.bat
 
 &nbsp;
 
@@ -43,6 +45,12 @@ Eventually you can override the config.py file configuration by creating a new f
 cd OSMQ\server_osmq
 python -m venv .venv # only for the first time
 .venv\Scripts\activate
+pip install -r requirements.txt
+
+Or with ANACONADA:
+- Create a new environement <name, exemple : PFE>
+- activate it with command : conda activate <PFE>
+cd OSMQ\server_osmq
 pip install -r requirements.txt
 ```
 
@@ -59,53 +67,19 @@ start.bat
 
 &nbsp;
 
-#### **5- Run vuejs server :**
+#### **5- Run Geo-Server :**
 
 ```
-cd OSMQ\vue_apps
-npm install
-npm run watch # See package.json and vue.config.js to understand where the vue html template is generated
+cd OSMQ\geoserver2.19
+cd bin
+startup.bat
 ```
 
 &nbsp;
 
-#### **6- Add initial data and create extentions:**
+#### Running**
 
-If you need to add initial data (database) then create your model and export your data in an sql file in the sqls/ directory (The sql file should be commited in git).
-  
-Create postgresql extentions:
-```
-create extension postgis;
-```
+Now you should be able de run your APP on any navigator line "google chome" on the addresse : http://127.0.0.1:5000/
+ 
 &nbsp;
 
-#### **7- Contribution :**
-
-1- Sync your master branch with the remote repo And create your feature branch
-
-```
-git checkout master
-git pull origin master
-git checkout -b feat/#YOUR_BRANCH_NUMBER
-```
-
-2- Make your source code changes And add commit them\*\*
-
-3- Again sync your master branch with the remote repo before the push
-
-```
-git checkout master
-git pull origin master
-```
-
-4- If the branch master changed then you have to rebase your feature branch and resolve any conflicts
-
-```
-git rebase master feat/#YOUR_BRANCH_NUMBER
-```
-
-5- Push your feature branch
-
-```
-git push origin feat/#YOUR_BRANCH_NUMBER
-```

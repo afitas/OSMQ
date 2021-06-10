@@ -110,7 +110,7 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 id="title" class="h2">Dashboard</h1>
+            <h1 id="title" class="h2">TABLEAU DE BORD</h1>
             <div class="btn-toolbar ">
              <button id="downloadPdf" class="btn btn-sm btn-outline-secondary" style="display: none;">Exporter le Rapport</button>
             </div>
@@ -120,7 +120,7 @@
             <div id="card_bg" class="card-img-top"></div>
             <div class="card-body">
               <h5 class="card-title">Evaluation de la qualité de donnée Open Steet Map en utilisant des indicateurs intinsèques</h5>
-              <p id="cardText" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p id="cardText" class="card-text">L’objectif principal de ce travail est de développer une application web, en appliquant des méthodes de calcul statistique sur des données historiques d’OSM. Cela nous permettra d’évaluer la qualité de notre jeu de donnée selon la complétude du réseau routier, le développement des géométries invalides (invalides polygones), l’actualité des entités OSM, mais aussi l’étude du comportement des contributeurs. Ces résultats seront représentés sous forme de graphes mais aussi sous forme cartographique. A l’aide de ces derniers, nous pourrons statuer sur la qualité de notre jeu de donnée, qui sera représenter par les données historiques OSM de la ville d’Oran.</p>
               <select id="cardSelect" class="mx-auto form-control form-control-sm" style="width: 100px;">
                 <option>Oran</option>
                 <!-- <option>Alger</option> -->
@@ -140,19 +140,29 @@
 
           </div>
           
-            <!-- <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Dolorum exercitationem praesentium aliquid distinctio error odit fugit facere optio aliquam dicta illo commodi, 
-                incidunt repudiandae saepe? In laboriosam ad tempora sit?
-            </p> -->
-           
-            
-          <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+         
 
         <div id="indic1div"  style="display: none;">
-          <canvas id="line_actuality" width="800" height="450"  style="display: none;"></canvas>
-          <canvas id="point_actuality" width="800" height="450"  style="display: none;"></canvas>
-          <canvas id="polygon_actuality" width="800" height="450"  style="display: none;"></canvas>
+          <div class="card inst1">
+            <div class="card-header">
+              Instructions
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>L’analyse de l’actualité des données consiste à voir la date de la dernière édition effectuer par le contributeur sur l’entité.
+                  Une symbologie est déterminer selon la date du dernier traitement de l'entité.                 
+                  On parle de « donnée périmé » ou outdated si cette dernière dépasse les deux ans sans modification, et cela peut fausser l'interprétation des résultats.
+                  Pour Analyser cela et dans le cas où les entités ont été complètement et correctement enregistrées dans le passé et il n'y a eu aucun changement dans la réalité depuis lors,
+                  une approche, consiste à regarder les horodatages des autres entités à proximité de celles qui sont très anciennes. 
+                  </p>
+                <footer class="blockquote-footer">Les diagrammes circulaires suivants montres la répartition en pourcentage de l'actualité des données.</footer>
+                <footer class="blockquote-footer">Merci d'utiliser la map pour identifier les entités qui ont été complètement et correctement enregistrées dans le passé.</footer>
+              </blockquote>
+            </div>
+          </div>
+          <canvas id="line_actuality" width="815" height="450"  style="display: none;"></canvas>
+          <canvas id="point_actuality" width="815" height="450"  style="display: none;"></canvas>
+          <canvas id="polygon_actuality" width="815" height="450"  style="display: none;"></canvas>
           <div id="mapanalyse" class="card" style="display: none;">
             <div id="map_bg" class="card-img-top"></div>
             <div class="card-body">
@@ -163,17 +173,58 @@
           </div>
         </div>
         <div id="indic2div"  style="display: none;">
+          <div class="card inst1">
+            <div class="card-header">
+              Instructions
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>Nous allons calculer la longueur des routes pour toutes les catégories à savoir (les autoroutes, les route secondaires / tertiaires, routes résidentielles, et les routes non classés « qui n'ont pas de tags »).
+                  Interprétations : -Une courbe croissante démontre une activité de cartographie en cours et ainsi la complétude n'as pas encore étais atteinte.
+                                   -Une courbe stable indique une complétude atteinte une activité de cartographie proche de zéro.                
+              </p>
+                <footer class="blockquote-footer">Histogramme sur l’exhaustivité du réseau routier.</footer>
+                <footer class="blockquote-footer">Histogramme sur l'activitée des contributeurs qui témoigne du processus de cartographie.</footer>
+              </blockquote>
+            </div>
+          </div>
           <canvas id="Completude" width="850" height="450"  style="display: none;"></canvas>
           <canvas id="distinct" width="850" height="450"  style="display: none;"></canvas>
         </div>
         <div id="indic3div"  style="display: none;">
+          <div class="card inst1">
+            <div class="card-header">
+              Instructions
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>Nous allons calculer le nombre de géométries polygonales invalides sur chaque mois pendant cette période étudiée et nous allons afficher leurs pourcentages par rapport au nombre total de polygone, toujours sur cette même période. Plus le nombre de polygones invalides est faible, meilleure est l'ensemble de données. 
+                  </p>
+              </blockquote>
+            </div>
+          </div>
           <canvas id="poly" width="850" height="450" style="display: none;"></canvas>
         </div>
         <div id="indic4div"  style="display: none;">
-          <canvas id="calass" width="800" height="450"  style="display: none;"></canvas>
-          <canvas id="crea_edit_point" width="800" height="450" style="display: none;"></canvas>
-          <canvas id="crea_edit_line" width="800" height="450" style="display: none;"></canvas>
-          <canvas id="crea_edit_poly" width="800" height="450" style="display: none;"></canvas>
+          <div class="card inst1">
+            <div class="card-header">
+              Instructions
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>Interprétations:
+                  Un nombre élevé et croissant de personnes qui ont déjà créé ou modifié des données OSM dans une zone indique une qualité de données peut être meilleure. 
+                  De plus, le nombre de contributeurs effectivement actifs par mois indique si ceux-ci n'ont contribués qu'une seule fois ou de manière plus fréquente. Plus le nombre de mappeurs récurrents et contributeurs mensuels est élevé, meilleure est la qualité globale des données. Une combinaison de l'évolution générale des points, des lignes ou des polygones avec les informations susmentionnées, sur l'activité des contributeurs, simplifie l'interprétation des statistiques quantitatives d'entités OSM. 
+                  </p>
+                <footer class="blockquote-footer">Les diagrammes circulaires suivants montres la répartition en pourcentage des diffrérentes catégories de contributeurs.</footer>
+                <footer class="blockquote-footer">Histogramme sur l'activitée des contributeurs qui indique le nombre totale d'entités OSM créer et éditer durant la prériode étudiée.</footer>
+              </blockquote>
+            </div>
+          </div>
+          <canvas id="calass" width="815" height="450"  style="display: none;"></canvas>
+          <canvas id="crea_edit_point" width="815" height="450" style="display: none;"></canvas>
+          <canvas id="crea_edit_line" width="815" height="450" style="display: none;"></canvas>
+          <canvas id="crea_edit_poly" width="815" height="450" style="display: none;"></canvas>
         </div>
         
         
