@@ -35,7 +35,7 @@ class DevelopmentConfig(Config):
     SECURITY_PASSWORD_SALT = "sa484-/s*153a-d^$*/+dsd*-48d@-6ag*/a/<*ù"
     # SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:admin@localhost:5432/rna'
     
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
 
 
 class ProductionConfig(Config):
