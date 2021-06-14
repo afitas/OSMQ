@@ -1,0 +1,17 @@
+<layer>
+  <name>Line_between_2y_and_2.5y</name>
+  <id>LayerInfoImpl--1c23d84c:179a2d3b145:63e6</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--1c23d84c:179a386d739:7506</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--1c23d84c:179a2d3b145:63e5</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2021-05-25 09:34:40.962 UTC</dateCreated>
+  <dateModified>2021-05-27 08:36:43.965 UTC</dateModified>
+</layer>

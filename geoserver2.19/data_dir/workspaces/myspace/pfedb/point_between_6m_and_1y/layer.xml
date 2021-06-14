@@ -1,0 +1,17 @@
+<layer>
+  <name>point_between_6m_and_1y</name>
+  <id>LayerInfoImpl--1c23d84c:179a2b109a1:-7e40</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--1c23d84c:179a314855e:767b</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--1c23d84c:179a2b109a1:-7e41</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2021-05-25 08:44:30.643 UTC</dateCreated>
+  <dateModified>2021-05-27 14:50:00.348 UTC</dateModified>
+</layer>

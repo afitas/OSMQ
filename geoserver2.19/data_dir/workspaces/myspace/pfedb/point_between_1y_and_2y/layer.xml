@@ -1,0 +1,17 @@
+<layer>
+  <name>point_between_1y_and_2y</name>
+  <id>LayerInfoImpl--1c23d84c:179a2b499f0:-2d2a</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--1c23d84c:179a314855e:767c</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--1c23d84c:179a2b499f0:-2d2b</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2021-05-25 09:15:50.890 UTC</dateCreated>
+  <dateModified>2021-05-25 12:34:38.427 UTC</dateModified>
+</layer>

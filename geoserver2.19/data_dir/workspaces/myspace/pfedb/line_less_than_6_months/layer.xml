@@ -1,0 +1,17 @@
+<layer>
+  <name>line_less_than_6_months</name>
+  <id>LayerInfoImpl--1c23d84c:179a2d3b145:63e0</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--1c23d84c:179a386d739:-397e</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--1c23d84c:179a2d3b145:63df</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2021-05-25 09:31:25.862 UTC</dateCreated>
+  <dateModified>2021-05-25 12:39:13.804 UTC</dateModified>
+</layer>

@@ -1,0 +1,17 @@
+<layer>
+  <name>point_less_than_6_months</name>
+  <id>LayerInfoImpl--1c23d84c:179a2ad85f8:3140</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--1c23d84c:179a2e77917:-5e12</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--1c23d84c:179a2ad85f8:313f</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2021-05-25 08:42:19.53 UTC</dateCreated>
+  <dateModified>2021-05-27 14:24:32.897 UTC</dateModified>
+</layer>

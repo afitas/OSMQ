@@ -1,0 +1,17 @@
+<layer>
+  <name>Line_between_6m_and_1y</name>
+  <id>LayerInfoImpl--1c23d84c:179a2d3b145:63e2</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--1c23d84c:179a386d739:7504</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--1c23d84c:179a2d3b145:63e1</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2021-05-25 09:32:43.699 UTC</dateCreated>
+  <dateModified>2021-05-26 15:17:22.574 UTC</dateModified>
+</layer>
