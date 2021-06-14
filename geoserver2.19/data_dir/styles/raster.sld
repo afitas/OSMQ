@@ -10,7 +10,7 @@
     <Name>default_raster</Name>
     <UserStyle>
     <!-- Styles can have names, titles and abstracts -->
-      <Title>Opaque Raster</Title>
+      <Title>Default Raster</Title>
       <Abstract>A sample style that draws a raster, good for displaying imagery</Abstract>
       <!-- FeatureTypeStyles describe how to render different features -->
       <!-- A FeatureTypeStyle for rendering rasters -->

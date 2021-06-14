@@ -1,0 +1,52 @@
+<GeoServerTileLayer>
+  <id>LayerInfoImpl--1c23d84c:179a2d3b145:63e0</id>
+  <enabled>true</enabled>
+  <inMemoryCached>true</inMemoryCached>
+  <name>myspace:line_less_than_6_months</name>
+  <mimeFormats>
+    <string>image/png</string>
+    <string>image/jpeg</string>
+  </mimeFormats>
+  <gridSubsets>
+    <gridSubset>
+      <gridSetName>EPSG:4326</gridSetName>
+      <extent>
+        <coords>
+          <double>-2.4685769999999922</double>
+          <double>35.2951914</double>
+          <double>11.214770200000013</double>
+          <double>43.31225870000001</double>
+        </coords>
+      </extent>
+    </gridSubset>
+    <gridSubset>
+      <gridSetName>EPSG:900913</gridSetName>
+      <extent>
+        <coords>
+          <double>-274800.734623986</double>
+          <double>4204069.18725979</double>
+          <double>1248422.50802758</double>
+          <double>5359622.22738192</double>
+        </coords>
+      </extent>
+    </gridSubset>
+  </gridSubsets>
+  <metaWidthHeight>
+    <int>4</int>
+    <int>4</int>
+  </metaWidthHeight>
+  <expireCache>0</expireCache>
+  <expireClients>0</expireClients>
+  <parameterFilters>
+    <styleParameterFilter>
+      <key>STYLES</key>
+      <defaultValue>under6m</defaultValue>
+      <allowedStyles class="java.util.Collections$UnmodifiableSet">
+        <string>green_point</string>
+      </allowedStyles>
+      <availableStyles class="sorted-set"/>
+      <defaultStyle>green_line</defaultStyle>
+    </styleParameterFilter>
+  </parameterFilters>
+  <gutter>0</gutter>
+</GeoServerTileLayer>

@@ -1,0 +1,9 @@
+feature-styles:
+- rules:
+  - symbolizers:
+    - line:
+        stroke-color: '#5cb85c'
+        stroke-width: 2
+        stroke-opacity: 0.5
+        stroke-linejoin: mitre
+        stroke-linecap: round

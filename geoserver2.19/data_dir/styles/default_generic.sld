@@ -13,7 +13,7 @@
       <FeatureTypeStyle>
         <Rule>
           <Name>raster</Name>
-          <Title>Opaque Raster</Title>
+          <Title>raster</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:Function name="isCoverage"/>
@@ -26,7 +26,7 @@
         </Rule>
         <Rule>
           <Name>Polygon</Name>
-          <Title>Grey Polygon</Title>
+          <Title>Polygon</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:Function name="dimension">
@@ -47,7 +47,7 @@
         </Rule>
         <Rule>
           <Name>Line</Name>
-          <Title>Blue Line</Title>
+          <Title>Line</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:Function name="dimension">
@@ -65,7 +65,7 @@
         </Rule>
         <Rule>
           <Name>point</Name>
-          <Title>Red Square Point</Title>
+          <Title>Point</Title>
           <ElseFilter/>
           <PointSymbolizer>
             <Graphic>
